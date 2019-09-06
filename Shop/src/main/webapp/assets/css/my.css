@@ -1,0 +1,12 @@
+.bbs{ 
+text-align:center;
+margin:0 auto;
+}
+table{
+width:500px;
+border:3px solid #999;}
+th{border:3px solid #999;}
+td{border:3px solid #999;}
+.input{
+	width:40px;
+	border:none}

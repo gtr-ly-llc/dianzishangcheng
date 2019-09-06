@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nt.mapper.UserMapper">
+	<select id="existUser" parameterType="User" resultType="User">
+        select * from t_user where useremail=#{useremail} 
+    </select>
+	<insert id="register" parameterType="User">
+		insert into t_user(useremail,userpwd) values (#{useremail},#{userpwd})
+	</insert>
+    <select id="login" parameterType="User" resultType="User">
+        select * from t_user where useremail=#{useremail} and userpwd=#{userpwd}
+    </select>
+</mapper>
