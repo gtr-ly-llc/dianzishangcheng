@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>addNotice.jsp</title>
+<title>添加公告</title>
 <link href="<%=basePath %>css/admin/common.css" type="text/css" rel="stylesheet">
 </head>    
 <body>
