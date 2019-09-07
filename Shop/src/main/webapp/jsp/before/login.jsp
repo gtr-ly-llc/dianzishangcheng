@@ -27,7 +27,7 @@
 			var th = document.form;
 			var regpostbox = new RegExp(/^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/);
 			if (th.useremail.value == ""){
-				alert("请填写E-mail!");
+				alert("请填写E-mail!2222222222222222222222222");
 				return false;
 			}else
 			if (!regpostbox.test(th.useremail.value)) {
