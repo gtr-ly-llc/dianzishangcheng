@@ -39,6 +39,9 @@
 			if(th.userpwd.value == ""){
 				alert("请填写密码！");
 				return false;
+			}if(th.code.value == ""){
+				alert("请填写验证码！");
+				return false;
 			}else{
 				return true;
 			}
@@ -85,7 +88,6 @@
 			<td  class="ared" style="width:40px;height:35px;">
 			<a href="#" onclick="changeCode()">
 				<font color="blue">看不清，换一个！</font></a>
-				
 			</td>
 			<td style="width:40px">
 				<img id="code" src=""/>

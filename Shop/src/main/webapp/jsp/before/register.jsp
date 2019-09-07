@@ -4,10 +4,12 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <link href="<%=basePath %>css/before/daohang.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath %>css/before/common.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath %>css/before/style.css" rel="stylesheet" type="text/css" />
@@ -36,6 +38,10 @@
 			alert("两次密码不一致！");
 			return false;
 		}
+		if(th.code.value == ""){
+			alert("请填写验证码！");
+			return false;
+		}
 		th.submit();
 		return true;
 	}
@@ -44,7 +50,11 @@
 		if(msg!=""&&msg!=null){
 			alert(msg);
 		}
+		changeCode();
 	}
+	function changeCode() {
+        $("#code").attr("src", "<%=basePath %>user/checkCode?t="+Math.random());
+    }
 </script>
 </head>
 <body>
@@ -70,45 +80,49 @@
 							<tr>
 								<td width="16%" align="right"><span class="cl_f30">*</span>
 									E-mail：</td>
-								<td width="59%"><input type="text" name="useremail"
+								<td width="59%" colspan="3"><input type="text" name="useremail"
 									id="textfield" class="my_txt_350" value="" /></td>
 								<td width="25%"></td>
 							</tr>
 							<tr>
 								<td align="right">&nbsp;</td>
-								<td colspan="2" style="font-size: 12px; padding-bottom: 25px;">
+								<td colspan="3" style="font-size: 12px; padding-bottom: 25px;">
 									（有效的E-mail地址才能收到激活码，帐户在激活后才能享受网站服务。）</td>
 							</tr>
 							<tr>
 								<td align="right"><span class="cl_f30">*</span> 密码：</td>
-								<td><input type="password" name="userpwd" id="textfield2"
+								<td colspan="3"><input type="password" name="userpwd" id="textfield2"
 									class="my_txt_350" /></td>
 								<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<td align="right">&nbsp;</td>
-								<td colspan="2" style="font-size: 12px; padding-bottom: 25px;">
+								<td colspan="3" style="font-size: 12px; padding-bottom: 25px;">
 									（为了您帐户的安全，建议使用字符+数字等多种不同类型的组合，且长度大于5位。）</td>
 							</tr>
 							<tr>
 								<td align="right"><span class="cl_f30">*</span> 重复密码：</td>
-								<td><input type="password" name="rebpwd" id="textfield3"
+								<td colspan="3"><input type="password" name="rebpwd" id="textfield3"
 									class="my_txt_350" /></td>
 								<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<td align="right">&nbsp;</td>
-								<td colspan="2" style="font-size: 12px; padding-bottom: 25px;">
+								<td colspan="3" style="font-size: 12px; padding-bottom: 25px;">
 									（确保您记住密码。）</td>
 							</tr>				
 							<tr>
 								<td align="right"><span class="cl_f30">*</span> 验证码：</td>
-								<td class="ared"><input type="text" name="code"
-									id="textfield5" class="my_txt_120" />
-									<img id="code" src=" " /> 
-									<a href="javascript:refreshCode();"><font color="blue">看不清，换一个！</font></a>
+								<td class="ared">
+									<input type="text" name="code" id="textfield5" class="my_txt_120" />
 								</td>
-								<td>1234</td>
+								<td  class="ared" style="width:100px;height:35px;">
+									<a href="#" onclick="changeCode()">
+										<font color="blue">看不清，换一个！</font></a>
+								</td>
+								<td style="width:50px">
+									<img id="code" src=""/>
+								</td>
 							</tr>
 							<tr>
 								<td align="right">&nbsp;</td>

@@ -78,10 +78,17 @@ public class UserController {
 		return mav;
     }
 	@RequestMapping("userRegister")
-	public ModelAndView userRegister(User user,HttpServletRequest request){
-		int i=userService.register(user);
-		String msg="";
+	public ModelAndView userRegister(User user,String code,HttpServletRequest request){
+		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
+		String verifyCode= (String) session.getAttribute("randomcode_key");
+        if(!code.equalsIgnoreCase(verifyCode)){
+        	mav.setViewName("before/register");
+        	mav.addObject("msg","验证码错误！");
+        	return mav;
+        }
+        int i=userService.register(user);
+		String msg="";
 		if(i==0) {
 			msg="用户名已存在！";
 			mav.setViewName("before/register");
