@@ -25,6 +25,7 @@
 	//确定按钮
 	function gogo(){
 		document.loginform.submit();
+		1111111111111111111111111
 	}
 	//取消按钮
 	function cancel(){
