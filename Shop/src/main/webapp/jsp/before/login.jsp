@@ -25,7 +25,9 @@
 	//确定按钮
 	function gogo(){
 
+
 	
+
 			var th = document.form;
 			var regpostbox = new RegExp(/^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/);
 			if (th.useremail.value == ""){
