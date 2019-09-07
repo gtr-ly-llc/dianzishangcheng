@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>公告详情</title>
 </head>
 <body>
 	<h3 align="center">6.18大放送</h3>
