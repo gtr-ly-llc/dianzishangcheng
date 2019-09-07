@@ -24,12 +24,31 @@
 	<script type="text/javascript">
 	//确定按钮
 	function gogo(){
+<<<<<<< HEAD
 		document.loginform.submit();
 		1111111111111111111111111
+=======
+			var th = document.form;
+			var regpostbox = new RegExp(/^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/);
+			if (th.useremail.value == ""){
+				alert("请填写E-mail!");
+				return false;
+			}else
+			if (!regpostbox.test(th.useremail.value)) {
+				alert("E-mail格式错误！");
+				return false;
+			}else
+			if(th.userpwd.value == ""){
+				alert("请填写密码！");
+				return false;
+			}else{
+				return true;
+			}
+>>>>>>> 62d6cce494e2db96b58d100d9b1db2632255ba2e
 	}
 	//取消按钮
 	function cancel(){
-		document.loginform.action="";
+		document.form.action="";
 	}
 	function refreshCode(){
 		document.getElementById("code").src = "validateCode?" + Math.random();
@@ -45,7 +64,7 @@
   <body>
   	<iframe src="<%=basePath %>jsp/before/head.jsp" width="100%"> </iframe>
   	<center>
-  	<form action="<%=basePath %>user/userLogin" method="post" name = "loginform">
+  	<form name="form" action="<%=basePath %>user/userLogin" method="post" onsubmit="return gogo()">
 	<table>
 		<tr>
 			<td colspan="2"><img src="<%=basePath %>images/admin/login.gif"></td>
@@ -72,7 +91,7 @@
 		</tr>		
 		<tr>
 			<td colspan="2">
-				<input type="image" src="<%=basePath %>images/admin/ok.gif" onclick="gogo()">
+				<input type="image" src="<%=basePath %>images/admin/ok.gif">
 				<input type="image" src="<%=basePath %>images/admin/cancel.gif" onclick="cancel()">
 			</td>
 		</tr>
