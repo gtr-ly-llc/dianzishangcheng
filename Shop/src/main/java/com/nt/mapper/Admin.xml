@@ -6,4 +6,16 @@
     <select id="login" parameterType="String" resultType="int">
         select count(adminname) from t_admin where adminname=#{param1} and adminpwd=#{param2}
     </select>
+    <select id="selectType" resultType="Goods">
+        select * from t_goodstype
+    </select>
+    <select id="existType" parameterType="String" resultType="Goods">
+        select * from t_goodstype where typename=#{typename}
+    </select>
+    <insert id="addType" parameterType="String">
+    	insert t_goodstype set typename=#{typename}
+    </insert>
+    <delete id="deleteType" parameterType="Goods">
+    	delete from t_goodstype where typeid=#{typeid}
+    </delete>
 </mapper>

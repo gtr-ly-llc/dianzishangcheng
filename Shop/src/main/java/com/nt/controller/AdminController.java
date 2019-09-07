@@ -1,5 +1,7 @@
 package com.nt.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nt.pojo.Goods;
 import com.nt.service.AdminService;
 @Controller
 @RequestMapping("admin")
@@ -34,6 +37,44 @@ public class AdminController {
 			if(i==0) {
 				mav.addObject("msg","登录失败！");
 			}
+		}
+		return mav;
+    }
+	@RequestMapping("selectType")
+    public ModelAndView selectType(String operation,HttpServletRequest request){
+		List<Goods> typeList=adminService.selectType();
+		ModelAndView mav = new ModelAndView();
+        if("add".equals(operation)) {
+        	mav.setViewName("admin/addType");
+        }
+        if("delete".equals(operation)) {
+        	mav.setViewName("admin/deleteType");
+        }
+        mav.addObject("typeList",typeList);
+		return mav;
+    }
+    @RequestMapping("addType")
+    public ModelAndView addType(String typename,HttpServletRequest request){
+		int ok=adminService.addType(typename);
+        ModelAndView mav = new ModelAndView();
+        mav=selectType("add",request);
+        if(ok==1) {
+        	mav.addObject("msg","添加类型成功！");
+		}else {
+			mav.addObject("msg","此类型已存在！");
+		}
+		return mav;
+    }
+    
+    @RequestMapping("deleteType")
+    public ModelAndView deleteType(Goods typeid,HttpServletRequest request){
+		int ok=adminService.deleteType(typeid);
+        ModelAndView mav = new ModelAndView();
+        mav=selectType("delete",request);
+        if(ok==1) {
+			mav.addObject("msg","删除类型成功！");
+		}else {
+			mav.addObject("msg","类型不存在或删除异常！");
 		}
 		return mav;
     }
