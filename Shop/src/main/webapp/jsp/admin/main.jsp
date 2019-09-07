@@ -101,7 +101,7 @@ body {
 	<div id="header">
 		<br>
 		<br>
-		<h1>欢迎张三进入后台管理系统！</h1>
+		<h1>欢迎管理员进入后台管理系统！</h1>
 	</div>
 	<div id="navigator">
 		<ul>
@@ -140,7 +140,7 @@ body {
 		
 	</div>
 	<div id="content">
-		<iframe src="selectGoods.jsp"  name="center" frameborder="0"></iframe>
+		<iframe src="<%=basePath %>jsp/admin/selectGoods.jsp"  name="center" frameborder="0"></iframe>
 	</div>
 	<div id="footer">Copyright ©清华大学出版社</div>
 </body>

@@ -24,10 +24,6 @@
 	<script type="text/javascript">
 	//确定按钮
 	function gogo(){
-<<<<<<< HEAD
-		document.loginform.submit();
-		1111111111111111111111111
-=======
 			var th = document.form;
 			var regpostbox = new RegExp(/^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/);
 			if (th.useremail.value == ""){
@@ -44,7 +40,6 @@
 			}else{
 				return true;
 			}
->>>>>>> 62d6cce494e2db96b58d100d9b1db2632255ba2e
 	}
 	//取消按钮
 	function cancel(){
