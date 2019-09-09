@@ -1,6 +1,7 @@
 package com.nt.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nt.pojo.Goods;
 import com.nt.pojo.User;
 import com.nt.service.UserService;
 import com.nt.util.RanCode;
@@ -20,6 +22,25 @@ import com.nt.util.RanCode;
 public class UserController {
 	@Autowired
     UserService userService;
+	/**
+	 * 首页
+	 * @return
+	 */
+	@RequestMapping("index")
+    public ModelAndView index(){
+		List<Goods> goodssalesList=userService.salesRanking();
+		List<Goods> goodspopularList=userService.popularRanking();
+		List<Goods> goodsnewList=userService.newProduct();
+        ModelAndView mav = new ModelAndView("before/index");
+        mav.addObject("goodssalesList",goodssalesList);
+        mav.addObject("goodspopularList",goodspopularList);
+        mav.addObject("goodsnewList",goodsnewList);
+		return mav;
+    }
+	/**
+	 * 登陆界面
+	 * @return
+	 */
 	@RequestMapping("login")
     public ModelAndView login(){
         ModelAndView mav = new ModelAndView("before/login");
@@ -48,6 +69,13 @@ public class UserController {
             e.printStackTrace();
         }
 	}
+	/**
+	 * 用户登录
+	 * @param user
+	 * @param code
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("userLogin")
     public ModelAndView userLogin(User user,String code,HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -72,11 +100,22 @@ public class UserController {
 		}
 		return mav;
     }
+	/**
+	 * 注册界面
+	 * @return
+	 */
 	@RequestMapping("register")
     public ModelAndView register(){
         ModelAndView mav = new ModelAndView("before/register");
 		return mav;
     }
+	/**
+	 * 用户注册
+	 * @param user
+	 * @param code
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("userRegister")
 	public ModelAndView userRegister(User user,String code,HttpServletRequest request){
 		HttpSession session = request.getSession();

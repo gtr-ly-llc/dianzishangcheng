@@ -8,6 +8,6 @@
 <html>
 <body>
 <h2>Hello World!</h2>
-<a href="<%=basePath %>user/login">进入电子商务平台</a>
+<a href="<%=basePath %>user/index">进入电子商务平台</a>
 </body>
 </html>
