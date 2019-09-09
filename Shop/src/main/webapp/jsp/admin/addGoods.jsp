@@ -51,7 +51,7 @@
 		<tr>
 			<td>类型</td>
 			<td>
-				<select name="goodstype_id">
+				<select name="typeid">
 					<c:forEach items="${typeList}" var="type">
 						<option value="${type.typeid}">${type.typename}</option>
 					</c:forEach>

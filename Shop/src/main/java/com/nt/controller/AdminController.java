@@ -17,11 +17,22 @@ import com.nt.service.AdminService;
 public class AdminController {
 	@Autowired
     AdminService adminService;
+	/**
+	 * 登录页面
+	 * @return
+	 */
 	@RequestMapping("login")
     public ModelAndView login(){
         ModelAndView mav = new ModelAndView("admin/login");
 		return mav;
     }
+	/**
+	 * 管理员登录
+	 * @param adminname
+	 * @param adminpwd
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("adminLogin")
     public ModelAndView userLogin(String adminname,String adminpwd,HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -40,6 +51,10 @@ public class AdminController {
 		}
 		return mav;
     }
+	/**
+	 * 添加商品页面
+	 * @return
+	 */
     @RequestMapping("goAddGoods")
     public ModelAndView goAddGoods(){
         ModelAndView mav = new ModelAndView();
@@ -47,8 +62,14 @@ public class AdminController {
         mav.setViewName("admin/addGoods");
 		return mav;
     }
+    /**
+     * 查询商品列表
+     * @param operation
+     * @param request
+     * @return
+     */
     @RequestMapping("selectGoods")
-    public ModelAndView selectGoods(String operation,HttpServletRequest request){
+    public ModelAndView selectGoods(String operation){
 		List<Goods> goodsList=adminService.selectGoods();
 		ModelAndView mav = new ModelAndView();
         if("select".equals(operation)) {
@@ -63,7 +84,12 @@ public class AdminController {
         mav.addObject("goodsList",goodsList);
 		return mav;
     }
-    
+    /**
+     * 添加商品
+     * @param goods
+     * @param request
+     * @return
+     */
     @RequestMapping("addGoods")
     public ModelAndView addGoods(Goods goods,HttpServletRequest request){
 		int ok=adminService.addGoods(goods);
@@ -76,6 +102,42 @@ public class AdminController {
 		}
 		return mav;
     }
+    /**
+     * 删除商品
+     * @param goodsid
+     * @param request
+     * @return
+     */
+    @RequestMapping("deleteGoods")
+    public ModelAndView deleteGoods(Integer goodsid,HttpServletRequest request){
+		int ok=adminService.deleteGoods(goodsid);
+        ModelAndView mav = new ModelAndView();
+        mav=selectGoods("delete");
+        if(ok==1) {
+        	mav.addObject("msg","删除商品成功！");
+		}else {
+			mav.addObject("msg","商品不存在或删除异常！");
+		}
+		return mav;
+    }
+    @RequestMapping("goUpdateGoods")
+    public ModelAndView goUpdateGoods(Integer goodsid,HttpServletRequest request){
+		Goods goods=adminService.productDetails(goodsid);
+        ModelAndView mav = new ModelAndView();
+        mav=selectType("select");
+        mav.setViewName("admin/updateAgoods");
+        if(goods!=null) {
+        	mav.addObject("goods",goods);
+		}else {
+			mav.addObject("msg","商品不存在！");
+		}
+		return mav;
+    }
+    /**
+     * 查询商品类别列表
+     * @param operation
+     * @return
+     */
 	@RequestMapping("selectType")
     public ModelAndView selectType(String operation){
 		List<Goods> typeList=adminService.selectType();
@@ -91,6 +153,12 @@ public class AdminController {
         mav.addObject("typeList",typeList);
 		return mav;
     }
+	/**
+	 * 添加商品类别
+	 * @param typename
+	 * @param request
+	 * @return
+	 */
     @RequestMapping("addType")
     public ModelAndView addType(String typename,HttpServletRequest request){
 		int ok=adminService.addType(typename);
@@ -103,7 +171,12 @@ public class AdminController {
 		}
 		return mav;
     }
-    
+    /**
+     * 删除商品类别
+     * @param typeid
+     * @param request
+     * @return
+     */
     @RequestMapping("deleteType")
     public ModelAndView deleteType(Goods typeid,HttpServletRequest request){
 		int ok=adminService.deleteType(typeid);

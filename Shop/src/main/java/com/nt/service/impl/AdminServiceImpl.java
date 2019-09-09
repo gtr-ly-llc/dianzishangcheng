@@ -50,6 +50,15 @@ public class AdminServiceImpl implements AdminService{
     	return ok;
     }
     @Override
+    public int deleteGoods(int goodsid) {
+    	int ok=adminMapper.deleteGoods(goodsid);
+    	return ok;
+    }
+    @Override
+    public Goods productDetails(int goodsid) {
+    	return adminMapper.productDetails(goodsid);
+    }
+    @Override
     public List<Goods> selectType(){
     	List<Goods> typeList=adminMapper.selectType();
     	return typeList;

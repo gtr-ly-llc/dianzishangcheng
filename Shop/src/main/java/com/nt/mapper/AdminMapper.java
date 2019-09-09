@@ -9,7 +9,8 @@ public interface AdminMapper {
 	public List<Goods> selectGoods();
 	public List<Goods> existGoods(Goods goods);
 	public int addGoods(Goods goods);
-	//public Goods selectGoodsId(Goods goods);
+	public int deleteGoods(int goodsid);
+	public Goods productDetails(int goodsid);
 	public List<Goods> selectType();
 	public Goods existType(String typename);
 	public int addType(String typename);

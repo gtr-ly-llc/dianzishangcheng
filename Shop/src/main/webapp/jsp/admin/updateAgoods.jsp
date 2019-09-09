@@ -4,6 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,9 +14,9 @@
 </head>    
 <body>
 	<form action="updateSelectGoods.jsp" method="post" enctype="multipart/form-data">
-		<table border=1 style="border-collapse: collapse">
+		<table border=1 style="border-collapse: collapse;display:inline-block;">
 			<caption>
-				<font size=4 face=华文新魏>修改商品</font>
+				<font size=4 face=华文新魏>修改商品信息</font>
 			</caption>
 			<tr>
 				<td>名称<font color="red">*</font></td>
@@ -53,22 +54,63 @@
 			<tr>
 				<td>类型</td>
 				<td>
-				<select name="goodstype_id">
-					<option value="0">服装</option>
+				<select name="typeid">
+					<c:forEach items="${typeList}" var="type">
+						<option value="${type.typeid}">${type.typename}</option>
+					</c:forEach>
 					<option value="1">家电</option>
 					<option value="2">水果</option>
 				</select>
 				</td>
 			</tr>
-			<tr>
-				<td align="center">
-					<input type="submit" value="提交"/>
+		</table>
+		<table border=1 style="border-collapse: collapse;display:inline-block" width="300px" height="193px">
+			<caption style="width:300px">
+				<font size=4 face=华文新魏>原商品信息</font>
+			</caption>
+			<tr height="20px">
+				<td>名称<font color="red">*</font></td>
+				<td>
+					${goods.goodsname}
 				</td>
-				<td align="left">
-					<input type="reset" value="重置"/>
+			</tr>
+			<tr height="20px">
+				<td>原价<font color="red">*</font></td>
+				<td>
+				${goods.goodsoriginal}
+				</td>
+			</tr>
+			<tr height="20px">
+				<td>折扣价</td>
+				<td>
+				${goods.goodscurrent}
+				</td>
+			</tr>
+			<tr height="20px">
+				<td>库存</td>
+				<td>
+				${goods.goodsstock}
+				</td>
+			</tr>
+			<tr height="74px">
+				<td>图片</td>
+				<td>
+					<br>
+						<img alt="" width="50" height="50"
+						src="<%=basePath %>images/admin/103.jpg"/>
+				</td>
+			</tr>
+			<tr height="20px">
+				<td>类型</td>
+				<td>
+				${goods.typename}
 				</td>
 			</tr>
 		</table>
+		<div>
+					<input type="submit" value="提交"/>
+					<input type="reset" value="重置"/>
+			</div>
 	</form>
 </body>
 </html>

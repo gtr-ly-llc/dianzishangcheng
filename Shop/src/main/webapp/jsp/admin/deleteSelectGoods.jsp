@@ -84,7 +84,7 @@
 					<td>${goods.goodsstock}</td>
 					<td><a href="goodsDetail.jsp" target="_blank">详情</a></td>
 					<td>
-						<a href="javascript:checkDel('2')">删除</a>
+						<a href="<%=basePath %>admin/deleteGoods?goodsid=${goods.goodsid}">删除</a>
 					</td>
 				</tr>
 			</c:forEach>

@@ -17,8 +17,14 @@
     <insert id="addGoods" parameterType="Goods">
     	insert t_goods set 
     	<if test="goodsid != 0"> goodsid=#{goodsid},</if>
-    	goodsname=#{goodsname},goodsoriginal=#{goodsoriginal},goodscurrent=#{goodscurrent},goodsstock=#{goodsstock},goodspicture="000",goodstype=1
+    	goodsname=#{goodsname},goodsoriginal=#{goodsoriginal},goodscurrent=#{goodscurrent},goodsstock=#{goodsstock},goodspicture="000",goodstype=#{typeid}
     </insert>
+    <delete id="deleteGoods" parameterType="int">
+    	delete from t_goods where goodsid=#{goodsid}
+    </delete>
+    <select id="productDetails" parameterType="int" resultType="Goods">
+        select * from t_goods a,t_goodstype b where goodsid=#{goodsid} and a.goodstype=b.typeid
+    </select>
     <select id="selectType" resultType="Goods">
         select * from t_goodstype
     </select>

@@ -46,7 +46,7 @@
 				<td>${goods.goodscurrent}</td>
 				<td>${goods.goodsstock}</td>
 				<td><a href="goodsDetail.jsp" target="_blank">详情</a></td>
-				<td><a href="updateAgoods.jsp" target="center" >修改</a></td>
+				<td><a href="<%=basePath %>admin/goUpdateGoods?goodsid=${goods.goodsid}" target="center" >修改</a></td>
 			</tr>
 		</c:forEach>
 		<tr>
