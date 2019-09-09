@@ -40,10 +40,48 @@ public class AdminController {
 		}
 		return mav;
     }
+    @RequestMapping("goAddGoods")
+    public ModelAndView goAddGoods(){
+        ModelAndView mav = new ModelAndView();
+        mav=selectType("select");
+        mav.setViewName("admin/addGoods");
+		return mav;
+    }
+    @RequestMapping("selectGoods")
+    public ModelAndView selectGoods(String operation,HttpServletRequest request){
+		List<Goods> goodsList=adminService.selectGoods();
+		ModelAndView mav = new ModelAndView();
+        if("select".equals(operation)) {
+        	mav.setViewName("admin/selectGoods");
+        }
+        if("delete".equals(operation)) {
+        	mav.setViewName("admin/deleteSelectGoods");
+        }
+        if("update".equals(operation)) {
+        	mav.setViewName("admin/updateSelectGoods");
+        }
+        mav.addObject("goodsList",goodsList);
+		return mav;
+    }
+    
+    @RequestMapping("addGoods")
+    public ModelAndView addGoods(Goods goods,HttpServletRequest request){
+		int ok=adminService.addGoods(goods);
+        ModelAndView mav = new ModelAndView();
+        mav=goAddGoods();
+        if(ok==1) {
+        	mav.addObject("msg","添加商品成功！");
+		}else {
+			mav.addObject("msg","此商品已存在或名称重复！");
+		}
+		return mav;
+    }
 	@RequestMapping("selectType")
-    public ModelAndView selectType(String operation,HttpServletRequest request){
+    public ModelAndView selectType(String operation){
 		List<Goods> typeList=adminService.selectType();
 		ModelAndView mav = new ModelAndView();
+		if("select".equals(operation)) {
+		}
         if("add".equals(operation)) {
         	mav.setViewName("admin/addType");
         }
@@ -57,7 +95,7 @@ public class AdminController {
     public ModelAndView addType(String typename,HttpServletRequest request){
 		int ok=adminService.addType(typename);
         ModelAndView mav = new ModelAndView();
-        mav=selectType("add",request);
+        mav=selectType("add");
         if(ok==1) {
         	mav.addObject("msg","添加类型成功！");
 		}else {
@@ -70,7 +108,7 @@ public class AdminController {
     public ModelAndView deleteType(Goods typeid,HttpServletRequest request){
 		int ok=adminService.deleteType(typeid);
         ModelAndView mav = new ModelAndView();
-        mav=selectType("delete",request);
+        mav=selectType("delete");
         if(ok==1) {
 			mav.addObject("msg","删除类型成功！");
 		}else {

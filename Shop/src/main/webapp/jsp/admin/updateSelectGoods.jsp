@@ -4,6 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -38,14 +39,16 @@
 			<th width="100px">详情</th>
 			<th width="100px">操作</th>
 		</tr>
-		<tr onmousemove="changeColor(this)" onmouseout="changeColor1(this)">
-			<td>1</td>
-			<td>水果1</td>
-			<td>10</td>
-			<td>1000</td>
-			<td><a href="goodsDetail.jsp" target="_blank">详情</a></td>
-			<td><a href="updateAgoods.jsp" target="center" >修改</a></td>
-		</tr>
+		<c:forEach items="${goodsList}" var="goods">
+			<tr onmousemove="changeColor(this)" onmouseout="changeColor1(this)">
+				<td>${goods.goodsid}</td>
+				<td>${goods.goodsname}</td>
+				<td>${goods.goodscurrent}</td>
+				<td>${goods.goodsstock}</td>
+				<td><a href="goodsDetail.jsp" target="_blank">详情</a></td>
+				<td><a href="updateAgoods.jsp" target="center" >修改</a></td>
+			</tr>
+		</c:forEach>
 		<tr>
 			<td colspan="6" align="right">
 				&nbsp;&nbsp;&nbsp;

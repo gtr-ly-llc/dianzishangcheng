@@ -107,17 +107,17 @@ body {
 		<ul>
 			<li><a>商品管理</a>
 				<ul>
-					<li><a href="addGoods.jsp" target="center">添加商品</a></li>
-					<li><a href="deleteSelectGoods.jsp" target="center">删除商品</a></li>
-					<li><a href="updateSelectGoods.jsp" target="center">修改商品</a></li>
-					<li><a href="selectGoods.jsp" target="center">查询商品</a></li>
+					<li><a href="<%=basePath %>admin/goAddGoods" target="center">添加商品</a></li>
+					<li><a href="<%=basePath %>admin/selectGoods?operation=delete" target="center">删除商品</a></li>
+					<li><a href="<%=basePath %>admin/selectGoods?operation=update" target="center">修改商品</a></li>
+					<li><a href="<%=basePath %>admin/selectGoods?operation=select" target="center">查询商品</a></li>
 				</ul>
 			</li>
 			<li><a>类型管理</a>
 				<ul>
 					<li><a href="<%=basePath %>admin/selectType?operation=add" target="center">添加类型</a></li>
 					<li><a href="<%=basePath %>admin/selectType?operation=delete" target="center">删除类型</a></li>
-				</ul>
+				</ul>	
 			</li>
 			<li><a>用户管理</a>
 				<ul>

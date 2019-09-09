@@ -4,6 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +13,7 @@
 <link href="<%=basePath %>css/admin/common.css" type="text/css" rel="stylesheet">
 </head>    
 <body>
+	<form action="<%=basePath %>admin/addGoods" method="post">
 	<table border=1 style="border-collapse: collapse">
 		<caption>
 			<font size=4 face=华文新魏>添加商品</font>
@@ -19,38 +21,40 @@
 		<tr>
 			<td>名称<font color="red">*</font></td>
 			<td>
-				<input type="text" name="gname"/>
+				<input type="text" name="goodsname"/>
 			</td>
 		</tr>
 		<tr>
 			<td>原价<font color="red">*</font></td>
 			<td>
-				<input type="text" name="goprice"/>
+				<input type="text" name="goodsoriginal"/>
 			</td>
 		</tr>
 		<tr>
 			<td>折扣价</td>
 			<td>
-				<input type="text" name="grprice"/>
+				<input type="text" name="goodscurrent"/>
 			</td>
 		</tr>
 		<tr>
 			<td>库存</td>
 			<td>
-				<input type="text" name="gstore"/>
+				<input type="text" name="goodsstock"/>
 			</td>
 		</tr>
 		<tr>
 			<td>图片</td>
 			<td>
-				<input type="file" name="logoImage"/>
+				<input type="file" name="goodspicture"/>
 			</td>
 		</tr>
 		<tr>
 			<td>类型</td>
 			<td>
 				<select name="goodstype_id">
-					<option value="0">服装</option>
+					<c:forEach items="${typeList}" var="type">
+						<option value="${type.typeid}">${type.typename}</option>
+					</c:forEach>
 					<option value="1">家电</option>
 					<option value="2">水果</option>
 				</select>
@@ -65,5 +69,6 @@
 			</td>
 		</tr>
 	</table>
+	</form>
 </body>
 </html>

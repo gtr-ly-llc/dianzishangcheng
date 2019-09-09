@@ -6,6 +6,19 @@
     <select id="login" parameterType="String" resultType="int">
         select count(adminname) from t_admin where adminname=#{param1} and adminpwd=#{param2}
     </select>
+    <select id="selectGoods" resultType="Goods">
+        select goodsid,goodsname,goodscurrent,goodsstock from t_goods
+    </select>
+    <select id="existGoods" parameterType="Goods" resultType="Goods">
+        select * from t_goods where
+        <if test="goodsid != 0"> goodsid like concat(#{goodsid},'%')</if>
+    	<if test="goodsid == 0"> goodsname=#{goodsname} </if>
+    </select>
+    <insert id="addGoods" parameterType="Goods">
+    	insert t_goods set 
+    	<if test="goodsid != 0"> goodsid=#{goodsid},</if>
+    	goodsname=#{goodsname},goodsoriginal=#{goodsoriginal},goodscurrent=#{goodscurrent},goodsstock=#{goodsstock},goodspicture="000",goodstype=1
+    </insert>
     <select id="selectType" resultType="Goods">
         select * from t_goodstype
     </select>
