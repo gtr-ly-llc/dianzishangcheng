@@ -10,6 +10,7 @@ public interface AdminService {
 	public int addGoods(Goods goods);
 	public int deleteGoods(int goodsid);
 	public Goods productDetails(int goodsid);
+	public int updateGoods(Goods goods);
 	public List<Goods> selectType();
 	public int addType(String typename);
 	public int deleteType(Goods typeid);

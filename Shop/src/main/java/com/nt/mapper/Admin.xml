@@ -25,6 +25,9 @@
     <select id="productDetails" parameterType="int" resultType="Goods">
         select * from t_goods a,t_goodstype b where goodsid=#{goodsid} and a.goodstype=b.typeid
     </select>
+    <update id="updateGoods" parameterType="Goods">
+    	update t_goods set goodsname=#{goodsname},goodsoriginal=#{goodsoriginal},goodscurrent=#{goodscurrent},goodsstock=#{goodsstock},goodspicture="000",goodstype=#{typeid} where goodsid=#{goodsid}
+    </update>
     <select id="selectType" resultType="Goods">
         select * from t_goodstype
     </select>
@@ -32,7 +35,7 @@
         select * from t_goodstype where typename=#{typename}
     </select>
     <insert id="addType" parameterType="String">
-    	insert t_goodstype set typename=#{typename}
+    	insert into t_goodstype(typename) values (#{typename})
     </insert>
     <delete id="deleteType" parameterType="Goods">
     	delete from t_goodstype where typeid=#{typeid}

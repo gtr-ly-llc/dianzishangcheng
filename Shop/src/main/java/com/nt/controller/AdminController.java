@@ -133,6 +133,21 @@ public class AdminController {
 		}
 		return mav;
     }
+    @RequestMapping("updateGoods")
+    public ModelAndView updateGoods(Goods goods,HttpServletRequest request){
+		int ok=adminService.updateGoods(goods);
+		Goods goodsnew=adminService.productDetails(goods.getGoodsid());
+        ModelAndView mav = new ModelAndView();
+        mav=selectType("select");
+        mav.setViewName("admin/updateAgoods");
+    	mav.addObject("goods",goodsnew);
+        if(ok==1) {
+        	mav.addObject("msg","商品修改成功！");
+		}else {
+			mav.addObject("msg","商品不存在！");
+		}
+		return mav;
+    }
     /**
      * 查询商品类别列表
      * @param operation
