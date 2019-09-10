@@ -6,4 +6,24 @@
     <select id="login" parameterType="String" resultType="int">
         select count(adminname) from t_admin where adminname=#{param1} and adminpwd=#{param2}
     </select>
+    
+    
+    <!-- 公告管理 -->
+    <select id="deleteNoticeSelect" resultType="Notice">
+        select * from t_notice
+    </select>
+    <select id="selectANotice" resultType="Notice" parameterType="Int">
+        select * from t_notice where noticeid= #{noticeid}
+    </select>
+    <delete id="deleteNotice" parameterType="Int">
+        delect from t_notice where noticeid = #{noticeid}
+    </delete>
+    <insert id="addNotice" parameterType="Notice">
+        insert into t_notice(noticeid,noticetitle,noticecontent,noticetime)
+        values(null,#{noticetitle},#{noticecontent},now())
+    </insert>
+
+
+
+
 </mapper>
