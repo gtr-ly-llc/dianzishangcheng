@@ -14,7 +14,7 @@
 <link href="<%=basePath %>css/before/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-   <iframe src="head.jsp" width="100%"> </iframe>
+   <iframe src="<%=basePath %>jsp/before/head.jsp" width="100%"> </iframe>
   	<div class="blank"></div>
 	<div class="block clearfix"><!--当前位置-->
 	<div class="location ared">当前位置：<a href="index.jsp">首页</a> > 购物流程 > 支付完成</div>

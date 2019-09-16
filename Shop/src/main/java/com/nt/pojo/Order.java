@@ -5,7 +5,7 @@ import java.util.Date;
 public class Order {
 	private int orderid;
 	private int userid;
-	private int goodsid;
+	private Goods goods;
 	private int buynumber;
 	private double ordermoney;
 	private int orderstatus;	//状态
@@ -22,11 +22,11 @@ public class Order {
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
-	public int getGoodsid() {
-		return goodsid;
+	public Goods getGoods() {
+		return goods;
 	}
-	public void setGoodsid(int goodsid) {
-		this.goodsid = goodsid;
+	public void setGoods(Goods goods) {
+		this.goods = goods;
 	}
 	public int getBuynumber() {
 		return buynumber;
@@ -51,5 +51,10 @@ public class Order {
 	}
 	public void setOrdertime(Date ordertime) {
 		this.ordertime = ordertime;
+	}
+	@Override
+	public String toString() {
+		return "Order [orderid=" + orderid + ", userid=" + userid + ", goods=" + goods + ", buynumber=" + buynumber
+				+ ", ordermoney=" + ordermoney + ", orderstatus=" + orderstatus + ", ordertime=" + ordertime + "]";
 	}
 }
