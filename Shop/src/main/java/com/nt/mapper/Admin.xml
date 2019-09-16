@@ -40,4 +40,22 @@
     <delete id="deleteType" parameterType="Goods">
     	delete from t_goodstype where typeid=#{typeid}
     </delete>
+    <select id="goOrderManager" resultMap="OrderMap">
+    	select useremail,orderid,ordermoney,orderstatus,ordertime
+    	from t_order_base a,t_user b where a.userid=b.userid
+    </select>
+    <resultMap type="Order" id="OrderMap">
+        <id property="orderid" column="orderid"/>
+        <result property="ordermoney" column="ordermoney"/>
+        <result property="orderstatus" column="orderstatus"/>
+        <result property="ordertime" column="ordertime"/>
+        <association property="user" javaType="User">
+            <id property="userid" column="userid"/>
+            <result property="useremail" column="useremail"/>
+        </association>
+    </resultMap>
+    <delete id="deleteOrder" parameterType="int">
+    	delete from t_order_details where orderid=#{orderid};
+    	delete from t_order_base where orderid=#{orderid};
+    </delete>
 </mapper>

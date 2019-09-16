@@ -121,12 +121,12 @@ body {
 			</li>
 			<li><a>用户管理</a>
 				<ul>
-					<li><a href="userManager.jsp" target="center">删除用户</a></li>
+					<li><a href="<%=basePath %>jsp/admin/userManager.jsp" target="center">删除用户</a></li>
 				</ul>
 			</li>
 			<li><a>订单管理</a>
 				<ul>
-					<li><a href="orderManager.jsp" target="center">删除订单</a></li>
+					<li><a href="<%=basePath %>admin/goOrderManager" target="center">删除订单</a></li>
 				</ul>
 			</li>
 			<li><a>公告管理</a>

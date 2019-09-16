@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.nt.mapper.AdminMapper;
 import com.nt.pojo.Goods;
+import com.nt.pojo.Order;
 import com.nt.pojo.User;
 import com.nt.service.AdminService;
 @Service
@@ -81,5 +82,13 @@ public class AdminServiceImpl implements AdminService{
     public int deleteType(Goods typeid) {
     	int ok=adminMapper.deleteType(typeid);
     	return ok;
+    }
+    @Override
+    public List<Order> goOrderManager(){
+    	return adminMapper.goOrderManager();
+    }
+    @Override
+    public int deleteOrder(int orderid) {
+    	return adminMapper.deleteOrder(orderid);
     }
 }

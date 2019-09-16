@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nt.pojo.Goods;
+import com.nt.pojo.Order;
 import com.nt.service.AdminService;
 @Controller
 @RequestMapping("admin")
@@ -197,6 +198,26 @@ public class AdminController {
 		int ok=adminService.deleteType(typeid);
         ModelAndView mav = new ModelAndView();
         mav=selectType("delete");
+        if(ok==1) {
+			mav.addObject("msg","删除类型成功！");
+		}else {
+			mav.addObject("msg","类型不存在或删除异常！");
+		}
+		return mav;
+    }
+    
+    @RequestMapping("goOrderManager")
+    public ModelAndView goOrderManager(){
+		List<Order> orderList=adminService.goOrderManager();
+        ModelAndView mav = new ModelAndView("admin/orderManager");
+        mav.addObject("orderList",orderList);
+		return mav;
+    }
+    @RequestMapping("deleteOrder")
+    public ModelAndView deleteOrder(Integer orderid){
+		int ok=adminService.deleteOrder(orderid);
+        ModelAndView mav = new ModelAndView();
+        mav=goOrderManager();
         if(ok==1) {
 			mav.addObject("msg","删除类型成功！");
 		}else {

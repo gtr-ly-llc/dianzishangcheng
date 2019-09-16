@@ -5,6 +5,7 @@ import java.util.Date;
 public class Order {
 	private int orderid;
 	private int userid;
+	private User user;
 	private Goods goods;
 	private int buynumber;
 	private double ordermoney;
@@ -52,9 +53,17 @@ public class Order {
 	public void setOrdertime(Date ordertime) {
 		this.ordertime = ordertime;
 	}
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	@Override
 	public String toString() {
-		return "Order [orderid=" + orderid + ", userid=" + userid + ", goods=" + goods + ", buynumber=" + buynumber
-				+ ", ordermoney=" + ordermoney + ", orderstatus=" + orderstatus + ", ordertime=" + ordertime + "]";
+		return "Order [orderid=" + orderid + ", userid=" + userid + ", user=" + user + ", goods=" + goods
+				+ ", buynumber=" + buynumber + ", ordermoney=" + ordermoney + ", orderstatus=" + orderstatus
+				+ ", ordertime=" + ordertime + "]";
 	}
 }
