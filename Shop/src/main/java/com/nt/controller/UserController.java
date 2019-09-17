@@ -94,7 +94,7 @@ public class UserController {
 		User us=userService.login(user);
 		if(us!=null) {
 			int id=us.getUserid();
-			mav.setViewName("before/index");
+			mav=index();
 			session.setAttribute("uid",id);
 			mav.addObject("msg","");
 		}else {
