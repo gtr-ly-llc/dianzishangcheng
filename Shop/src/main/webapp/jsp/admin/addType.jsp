@@ -4,6 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,6 +20,22 @@
 		  	background-color: #F08080;
 		}
 	</style>
+	<script>
+	function checkInput(){
+		var th = document.form;
+		if (th.typename.value == ""){
+			alert("请填类型名称！");
+			return false;
+		}
+		return true;
+	}
+	window.onload = function() {
+		var msg="${msg}";
+		if(msg!=""&&msg!=null){
+			alert(msg);
+		}
+	}
+	</script>
 </head>
 <body>
 	<table border="1" bordercolor="PaleGreen" >
@@ -26,16 +43,14 @@
 			<th width="200px">类型ID</th>
 			<th width="600px">类型名称</th>
 		</tr>
+		<c:forEach items="${typeList}" var="type">
 			<tr>
-				<td>1</td>
-				<td>服装</td>
+				<td>${type.typeid}</td>
+				<td>${type.typename}</td>
 			</tr>
-			<tr>
-				<td>2</td>
-				<td>水果</td>
-			</tr>
+		</c:forEach>
 	</table>
-	<form action="" method="post">
+	<form name="form" action="<%=basePath %>admin/addType" method="post" onsubmit="return checkInput()">
 		类型名称：
 		<input type="text" name="typename"/>
 		<input type="submit" value="添加"/>

@@ -4,6 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,51 +31,20 @@
 						<span>销售排行</span>
 					</div>
 					<div class="top10List clearfix">
+						<c:forEach items="${goodssalesList}" var="sales">
 							<ul class="clearfix">
-								<li class="topimg">
-								<img class="iteration" src="<%=basePath %>images/before/top_1.gif" />
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
-									<img class="samllimg" alt="" src="<%=basePath %>images/before/103.jpg" /></a></li>
-								<li class="iteration1">
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a><br />
-								 售价：<font class="f1">￥10元</font><br /></li>
+							<li class="topimg">
+							<input type="text" value="${i=i+1}" style="display:none"/>
+							<img class="iteration" src="<%=basePath %>images/before/top_${i}.gif" />
+							<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
+								<img class="samllimg" alt="" src="<%=basePath %>images/before/10${i%9}.jpg" /></a></li>
+							<li class="iteration1">
+							<a href="<%=basePath %>jsp/before/goodsDetail.jsp">${sales.goodsname}</a><br />
+							原价：<font class="f1">${sales.goodsoriginal}</font><br />
+							现价：<font class="f1">${sales.goodscurrent}</font><br />
+							</li>
 							</ul>
-							<ul class="clearfix">
-								<li class="topimg">
-								<img class="iteration" src="<%=basePath %>images/before/top_2.gif" />
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
-									<img class="samllimg" alt="" src="<%=basePath %>images/before/103.jpg" /></a></li>
-								<li class="iteration1">
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a><br />
-								 售价：<font class="f1">￥10元</font><br /></li>
-							</ul>
-							<ul class="clearfix">
-								<li class="topimg">
-								<img class="iteration" src="<%=basePath %>images/before/top_3.gif" />
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
-									<img class="samllimg" alt="" src="<%=basePath %>images/before/103.jpg" /></a></li>
-								<li class="iteration1">
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a><br />
-								 售价：<font class="f1">￥10元</font><br /></li>
-							</ul>
-							<ul class="clearfix">
-								<li class="topimg">
-								<img class="iteration" src="<%=basePath %>images/before/top_4.gif" />
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
-									<img class="samllimg" alt="" src="<%=basePath %>images/before/103.jpg" /></a></li>
-								<li class="iteration1">
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a><br />
-								 售价：<font class="f1">￥10元</font><br /></li>
-							</ul>
-														<ul class="clearfix">
-								<li class="topimg">
-								<img class="iteration" src="<%=basePath %>images/before/top_1.gif" />
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
-									<img class="samllimg" alt="" src="<%=basePath %>images/before/103.jpg" /></a></li>
-								<li class="iteration1">
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a><br />
-								 售价：<font class="f1">￥10元</font><br /></li>
-							</ul>
+						</c:forEach>	
 					</div>
 				</div>
 			</div>
@@ -87,51 +57,20 @@
 						<span>人气排行</span>
 					</div>
 					<div class="top10List clearfix">
-						<ul class="clearfix">
-								<li class="topimg">
-								<img class="iteration" src="<%=basePath %>images/before/top_1.gif" />
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
-									<img class="samllimg" alt="" src="<%=basePath %>images/before/103.jpg" /></a></li>
-								<li class="iteration1">
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a><br />
-								 售价：<font class="f1">￥10元</font><br /></li>
-							</ul>
+						<c:forEach items="${goodspopularList}" var="popular">
 							<ul class="clearfix">
-								<li class="topimg">
-								<img class="iteration" src="<%=basePath %>images/before/top_2.gif" />
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
-									<img class="samllimg" alt="" src="<%=basePath %>images/before/103.jpg" /></a></li>
-								<li class="iteration1">
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a><br />
-								 售价：<font class="f1">￥10元</font><br /></li>
+							<li class="topimg">
+							<input type="text" value="${j=j+1}" style="display:none"/>
+							<img class="iteration" src="<%=basePath %>images/before/top_${j}.gif" />
+							<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
+								<img class="samllimg" alt="" src="<%=basePath %>images/before/10${j%9}.jpg" /></a></li>
+							<li class="iteration1">
+							<a href="<%=basePath %>jsp/before/goodsDetail.jsp">${popular.goodsname}</a><br />
+							原价：<font class="f1">${popular.goodsoriginal}</font><br />
+							现价：<font class="f1">${popular.goodscurrent}</font><br />
+							</li>
 							</ul>
-							<ul class="clearfix">
-								<li class="topimg">
-								<img class="iteration" src="<%=basePath %>images/before/top_3.gif" />
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
-									<img class="samllimg" alt="" src="<%=basePath %>images/before/103.jpg" /></a></li>
-								<li class="iteration1">
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a><br />
-								 售价：<font class="f1">￥10元</font><br /></li>
-							</ul>
-							<ul class="clearfix">
-								<li class="topimg">
-								<img class="iteration" src="<%=basePath %>images/before/top_4.gif" />
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
-									<img class="samllimg" alt="" src="<%=basePath %>images/before/103.jpg" /></a></li>
-								<li class="iteration1">
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a><br />
-								 售价：<font class="f1">￥10元</font><br /></li>
-							</ul>
-														<ul class="clearfix">
-								<li class="topimg">
-								<img class="iteration" src="<%=basePath %>images/before/top_1.gif" />
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
-									<img class="samllimg" alt="" src="<%=basePath %>images/before/103.jpg" /></a></li>
-								<li class="iteration1">
-								<a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a><br />
-								 售价：<font class="f1">￥10元</font><br /></li>
-							</ul>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
@@ -141,7 +80,7 @@
 			<div class="AreaR">
 				<div class="AreaM clearfix">
 					<div id="focus">
-						<img src="<%=basePath %>images/before/540.jpg" />
+						<img src="<%=basePath%>images/before/540.jpg" />
 					</div>
 				</div>
 				<div class="AreaRR clearfix">
@@ -153,9 +92,9 @@
 							</div>
 							<div class="post_list ared">
 								<ul>
-									<li><a href="javascript:openNotice('noticeDetail.jsp');">公告1</a></li>
-									<li><a href="javascript:openNotice('noticeDetail.jsp');">公告2</a></li>
-									<li><a href="javascript:openNotice('noticeDetail.jsp');">公告3</a></li>
+									<c:forEach items="${noticeList}" var="notice">
+										<li><a href="javascript:openNotice('noticeDetail.jsp');">${notice.noticetitle}</a></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -174,102 +113,22 @@
 						</div>
 						<div class="itemgood_nr clearfix">
 							<ul>
+								<c:forEach items="${goodsnewList}" var="newgoods">
 									<li>
 										<div>
+											<input type="text" value="${k=k+1}" style="display:none"/>
 											<p class="pic">
 												<a href="<%=basePath %>jsp/before/goodsDetail.jsp">
-												<img src="<%=basePath %>images/before/103.jpg" /></a>
+												<img src="<%=basePath %>images/before/10${k}.jpg" /></a>
 											</p>
 											<p class="wz">
-												<strong><a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a></strong>
-												<em>现价:<span>￥10</span></em>
+												<strong><a href="<%=basePath %>jsp/before/goodsDetail.jsp">${newgoods.goodsname}</a></strong>
+												<em>原价:<span>${newgoods.goodsoriginal}</span></em>
+												<em>现价:<span>${newgoods.goodscurrent}</span></em>
 											</p>
 										</div>
 									</li>
-									<li>
-										<div>
-											<p class="pic">
-												<a href="<%=basePath %>jsp/before/goodsDetail.jsp">
-												<img src="<%=basePath %>images/before/103.jpg" /></a>
-											</p>
-											<p class="wz">
-												<strong><a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a></strong>
-												<em>现价:<span>￥10</span></em>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div>
-											<p class="pic">
-												<a href="<%=basePath %>jsp/before/goodsDetail.jsp">
-												<img src="<%=basePath %>images/before/103.jpg" /></a>
-											</p>
-											<p class="wz">
-												<strong><a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a></strong>
-												<em>现价:<span>￥10</span></em>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div>
-											<p class="pic">
-												<a href="<%=basePath %>jsp/before/goodsDetail.jsp">
-												<img src="<%=basePath %>images/before/103.jpg" /></a>
-											</p>
-											<p class="wz">
-												<strong><a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a></strong>
-												<em>现价:<span>￥10</span></em>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div>
-											<p class="pic">
-												<a href="<%=basePath %>jsp/before/goodsDetail.jsp">
-												<img src="<%=basePath %>images/before/103.jpg" /></a>
-											</p>
-											<p class="wz">
-												<strong><a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a></strong>
-												<em>现价:<span>￥10</span></em>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div>
-											<p class="pic">
-												<a href="<%=basePath %>jsp/before/goodsDetail.jsp">
-												<img src="<%=basePath %>images/before/103.jpg" /></a>
-											</p>
-											<p class="wz">
-												<strong><a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a></strong>
-												<em>现价:<span>￥10</span></em>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div>
-											<p class="pic">
-												<a href="<%=basePath %>jsp/before/goodsDetail.jsp">
-												<img src="<%=basePath %>images/before/103.jpg" /></a>
-											</p>
-											<p class="wz">
-												<strong><a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a></strong>
-												<em>现价:<span>￥10</span></em>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div>
-											<p class="pic">
-												<a href="<%=basePath %>jsp/before/goodsDetail.jsp">
-												<img src="<%=basePath %>images/before/103.jpg" /></a>
-											</p>
-											<p class="wz">
-												<strong><a href="<%=basePath %>jsp/before/goodsDetail.jsp">水果1</a></strong>
-												<em>现价:<span>￥10</span></em>
-											</p>
-										</div>
-									</li>
+								</c:forEach>
 							</ul>
 						</div>  
 					</div>

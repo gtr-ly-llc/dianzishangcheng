@@ -8,22 +8,53 @@
     </select>
     
     
-    <!-- 公告管理 -->
-    <select id="deleteNoticeSelect" resultType="Notice">
+<!-- 公告管理 -->
+     <!-- 添加公告 -->
+     <insert id="addNotice" parameterType="Notice">
+        insert into t_notice(noticetitle,noticecontent,noticetime)
+        values(#{noticetitle},#{noticecontent},now())
+    </insert>
+    <!-- 删除公告 -->
+    <delete id="deleteNotice" parameterType="Int">
+        delete  from t_notice where noticeid = #{noticeid}
+    </delete>
+ 
+ <select id="goDeleteNotice" resultType="Notice">
         select * from t_notice
     </select>
-    <select id="selectANotice" resultType="Notice" parameterType="Int">
-        select * from t_notice where noticeid= #{noticeid}
+
+    <select id="selectGoods" resultType="Goods">
+        select goodsid,goodsname,goodscurrent,goodsstock from t_goods
     </select>
-    <delete id="deleteNotice" parameterType="Int">
-        delect from t_notice where noticeid = #{noticeid}
-    </delete>
-    <insert id="addNotice" parameterType="Notice">
-        insert into t_notice(noticeid,noticetitle,noticecontent,noticetime)
-        values(null,#{noticetitle},#{noticecontent},now())
+    <select id="existGoods" parameterType="Goods" resultType="Goods">
+        select * from t_goods where
+        <if test="goodsid != 0"> goodsid like concat(#{goodsid},'%')</if>
+    	<if test="goodsid == 0"> goodsname=#{goodsname} </if>
+    </select>
+    <insert id="addGoods" parameterType="Goods">
+    	insert t_goods set 
+    	<if test="goodsid != 0"> goodsid=#{goodsid},</if>
+    	goodsname=#{goodsname},goodsoriginal=#{goodsoriginal},goodscurrent=#{goodscurrent},goodsstock=#{goodsstock},goodspicture="000",goodstype=#{typeid}
     </insert>
-
-
-
+    <delete id="deleteGoods" parameterType="int">
+    	delete from t_goods where goodsid=#{goodsid}
+    </delete>
+    <select id="productDetails" parameterType="int" resultType="Goods">
+        select * from t_goods a,t_goodstype b where goodsid=#{goodsid} and a.goodstype=b.typeid
+    </select>
+    <select id="selectType" resultType="Goods">
+        select * from t_goodstype
+    </select>
+    <select id="existType" parameterType="String" resultType="Goods">
+        select * from t_goodstype where typename=#{typename}
+    </select>
+    <insert id="addType" parameterType="String">
+    	insert t_goodstype set typename=#{typename}
+    </insert>
+    <delete id="deleteType" parameterType="Goods">
+    	delete from t_goodstype where typeid=#{typeid}
+    </delete>
+    
+    
 
 </mapper>

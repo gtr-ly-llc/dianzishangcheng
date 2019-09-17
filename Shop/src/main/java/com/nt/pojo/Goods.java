@@ -12,6 +12,12 @@ public class Goods {
 	public int getGoodsid() {
 		return goodsid;
 	}
+	@Override
+	public String toString() {
+		return "Goods [goodsid=" + goodsid + ", goodsname=" + goodsname + ", typeid=" + typeid + ", typename="
+				+ typename + ", goodsoriginal=" + goodsoriginal + ", goodscurrent=" + goodscurrent + ", goodsstock="
+				+ goodsstock + ", goodspicture=" + goodspicture + "]";
+	}
 	public void setGoodsid(int goodsid) {
 		this.goodsid = goodsid;
 	}

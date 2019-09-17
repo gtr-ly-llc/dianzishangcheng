@@ -8,11 +8,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>公告详情</title>
 </head>
 <body>
-	<h3 align="center">6.18大放送</h3>
-	<p>&nbsp;&nbsp;&nbsp;&nbsp;商品全部8折</p>		
-	<p align="right">2019-06-18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>				
+	<h3 align="center">公告标题</h3>
+	<p>公告内容</p>		
+	<p align="right">公告日期 2019-06-18</p>				
 </body>
 </html>

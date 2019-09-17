@@ -12,4 +12,38 @@
     <select id="login" parameterType="User" resultType="User">
         select * from t_user where useremail=#{useremail} and userpwd=#{userpwd}
     </select>
+    <select id="salesRanking" resultType="Goods">
+        select a.goodsid,goodsname,goodsoriginal,goodscurrent,goodspicture
+		from t_goods a 
+		left join 
+		(select goodsid,sum(buynumber) num 
+		from t_order_details 
+		group by goodsid) b 
+		on a.goodsid=b.goodsid 
+		order by b.num 
+		desc limit 0,10
+    </select>
+    <select id="popularRanking" resultType="Goods">
+        select a.goodsid,goodsname,goodsoriginal,goodscurrent,goodspicture
+		from t_goods a 
+		left join 
+		(select goodsid,count(followid) num 
+		from t_follow
+		group by goodsid) b 
+		on a.goodsid=b.goodsid 
+		order by b.num 
+		desc limit 0,10
+    </select>
+    <select id="newProduct" resultType="Goods">
+        select goodsid,goodsname,goodsoriginal,goodscurrent,goodspicture 
+        from t_goods 
+        order by goodsid 
+        desc limit 0,8
+    </select>
+    
+    <!-- 查询公告 -->
+     <select id="selectNotice" resultType="Notice">
+        select * from t_notice
+    </select>
+    
 </mapper>

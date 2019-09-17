@@ -4,6 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,11 +21,17 @@
 		}
 	</style>
 	<script type="text/javascript">
-  		function checkDel(id){
-  			if(window.confirm("是否删除该商品类型？")){
-  				window.location.href = "/ch20/adminType/deleteType?id="+id;
-  			}
-  		}
+	function checkDelete(typename) {
+    	if (!confirm("删除商品类型："+typename+"？")) {
+        	window.event.returnValue = false;
+    	}
+	}
+	window.onload = function() {
+		var msg="${msg}";
+		if(msg!=""&&msg!=null){
+			alert(msg);
+		}
+	}
   </script>
 </head>
 <body>
@@ -34,16 +41,13 @@
 			<th width="300px">类型名称</th>
 			<th width="300px">删除操作</th>
 		</tr>
-		<tr>
-			<td>1</td>
-			<td>服装</td>
-			<td><a href=" ">删除</a></td>
-		</tr>
+		<c:forEach items="${typeList}" var="type">
 			<tr>
-			<td>2</td>
-			<td>水果</td>
-			<td><a href=" ">删除</a></td>
-		</tr>
+				<td>${type.typeid}</td>
+				<td>${type.typename}</td>
+				<td><a href="<%=basePath %>admin/deleteType?typeid=${type.typeid}" onclick="return checkDelete('${type.typename}')">删除</a></td>
+			</tr>
+		</c:forEach>
 	</table>
 </body>
 </html>

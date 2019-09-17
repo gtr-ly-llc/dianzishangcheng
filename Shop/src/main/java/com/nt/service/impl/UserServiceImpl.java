@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nt.mapper.UserMapper;
+import com.nt.pojo.Goods;
+import com.nt.pojo.Notice;
 import com.nt.pojo.User;
 import com.nt.service.UserService;
 
@@ -16,7 +18,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public User login(User user) {
     	User u = userMapper.login(user);
-    	System.out.println(u);
         return u;
      }
     @Override
@@ -29,5 +30,21 @@ public class UserServiceImpl implements UserService{
     	i=userMapper.register(user);
     	return i;
     }
-    
+    @Override
+    public List<Goods> salesRanking(){
+    	return userMapper.salesRanking();
+    }
+    @Override
+    public List<Goods> popularRanking(){
+    	return userMapper.popularRanking();
+    }
+    @Override
+    public List<Goods> newProduct(){
+    	return userMapper.newProduct();
+    }
+	@Override
+	public List<Notice> selectNotice() {
+		return userMapper.selectNotice();
+		
+	}
 }
