@@ -33,9 +33,6 @@ public class UserController {
 		List<Goods> goodspopularList=userService.popularRanking();
 		List<Goods> goodsnewList=userService.newProduct();
 		List<Notice> noticeList=userService.selectNotice();
-		for(Notice n:noticeList) {
-			System.out.println(n);
-		}
         ModelAndView mav = new ModelAndView("before/index");
         mav.addObject("goodssalesList",goodssalesList);
         mav.addObject("goodspopularList",goodspopularList);
