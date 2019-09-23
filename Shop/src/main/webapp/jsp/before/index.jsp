@@ -36,7 +36,7 @@
 							<li class="topimg">
 							<input type="text" value="${i=i+1}" style="display:none"/>
 							<img class="iteration" src="<%=basePath %>images/before/top_${i}.gif" />
-							<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
+							<a href="<%=basePath %>user/goodsDetail?goodsid=${sales.goodsid}"> 
 								<img class="samllimg" alt="" src="<%=basePath %>images/before/10${i%9}.jpg" /></a></li>
 							<li class="iteration1">
 							<a href="<%=basePath %>jsp/before/goodsDetail.jsp">${sales.goodsname}</a><br />
@@ -62,7 +62,7 @@
 							<li class="topimg">
 							<input type="text" value="${j=j+1}" style="display:none"/>
 							<img class="iteration" src="<%=basePath %>images/before/top_${j}.gif" />
-							<a href="<%=basePath %>jsp/before/goodsDetail.jsp"> 
+							<a href="<%=basePath %>user/goodsDetail?goodsid=${popular.goodsid}"> 
 								<img class="samllimg" alt="" src="<%=basePath %>images/before/10${j%9}.jpg" /></a></li>
 							<li class="iteration1">
 							<a href="<%=basePath %>jsp/before/goodsDetail.jsp">${popular.goodsname}</a><br />
@@ -118,7 +118,7 @@
 										<div>
 											<input type="text" value="${k=k+1}" style="display:none"/>
 											<p class="pic">
-												<a href="<%=basePath %>jsp/before/goodsDetail.jsp">
+												<a href="<%=basePath %>user/goodsDetail?goodsid=${newgoods.goodsid}">
 												<img src="<%=basePath %>images/before/10${k}.jpg" /></a>
 											</p>
 											<p class="wz">

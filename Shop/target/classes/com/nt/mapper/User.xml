@@ -40,10 +40,70 @@
         order by goodsid 
         desc limit 0,8
     </select>
+
     
     <!-- 查询公告 -->
      <select id="selectNotice" resultType="Notice">
         select * from t_notice
     </select>
     
+
+    <select id="goodsDetail" parameterType="int" resultType="Goods">
+    	select * from t_goods a,t_goodstype b where a.goodstype=b.typeid and a.goodsid=#{goodsid}
+    </select>
+    <select id="existShopCart" parameterType="ShopCart" resultType="ShopCart">
+    	select shopcartid from t_shopcart where userid=#{userid} and goodsid=#{goods.goodsid}
+    </select>
+    <insert id="addToCart" parameterType="ShopCart">
+		insert into t_shopcart(userid,goodsid,buynumber) values (#{userid},#{goods.goodsid},#{buynumber})
+	</insert>
+    <select id="selectCartList" parameterType="int" resultMap="ShopCartMap">
+    	select shopcartid,userid,buynumber,a.goodsid goodsid,goodsname,goodscurrent,goodspicture
+    	from t_goods a,t_shopcart b where a.goodsid=b.goodsid and b.userid=#{userid}
+    </select>
+	<select id="goPlaceOrder" parameterType="java.util.List" resultMap="ShopCartMap">
+		select shopcartid,userid,buynumber,a.goodsid goodsid,goodsname,goodscurrent,goodspicture 
+		from t_goods a,t_shopcart b 
+		where a.goodsid=b.goodsid 
+		and b.shopcartid in
+		<foreach collection="shopcartidList" item="shopcartid" open="(" close=")" separator=",">
+			#{shopcartid}
+		</foreach>
+	</select>
+    <resultMap type="ShopCart" id="ShopCartMap">
+        <id property="shopcartid" column="shopcartid"/>
+        <result property="userid" column="userid"/>
+        <result property="buynumber" column="buynumber"/>
+        <association property="goods" javaType="Goods">
+            <id property="goodsid" column="goodsid"/>
+            <result property="goodsname" column="goodsname"/>
+            <result property="typename" column="typename"/>
+            <result property="goodscurrent" column="goodscurrent"/>
+            <result property="goodsstock" column="goodsstock"/>
+            <result property="goodspicture" column="goodspicture"/>
+        </association>
+    </resultMap>
+    <update id="saveBuyNumber" parameterType="ShopCart">
+    	update t_shopcart set buynumber=#{buynumber} where userid=#{userid} and goodsid=#{goods.goodsid}
+    </update>
+    <delete id="deleteFromCart" parameterType="int">
+    	delete from t_shopcart where userid=#{param1}
+    	<if test="param2 != 0"> and goodsid=#{param2}</if>
+    </delete>
+    <select id="maxOrderId" resultType="int">
+    	select max(orderid) from t_order_base
+    </select>
+    <insert id="placeOrder" parameterType="Order">
+    	<!-- <foreach collection="goodsidList" item="goodsid" separator=";">
+    		insert t_order_details set userid=#{userid},
+    	</foreach> -->
+    	insert into t_order_base (orderid,ordermoney,userid,ordertime) values(#{orderid},#{ordermoney},#{userid},#{ordertime})
+    </insert>
+    <insert id="addOrderDetails">
+    	insert into t_order_details(orderid,goodsid,buynumber) values
+    	<foreach collection="orderGoodsList" item="ordergoods" separator=",">
+    		(#{orderid},#{ordergoods.goods.goodsid},#{ordergoods.buynumber})
+    	</foreach>
+    </insert>
+
 </mapper>

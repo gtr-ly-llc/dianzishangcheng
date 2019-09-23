@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.nt.pojo.Notice;
 import com.nt.pojo.Goods;
+import com.nt.pojo.Order;
 import com.nt.service.AdminService;
 @Controller
 @RequestMapping("admin")
@@ -178,6 +179,21 @@ public class AdminController {
 		}
 		return mav;
     }
+    @RequestMapping("updateGoods")
+    public ModelAndView updateGoods(Goods goods,HttpServletRequest request){
+		int ok=adminService.updateGoods(goods);
+		Goods goodsnew=adminService.productDetails(goods.getGoodsid());
+        ModelAndView mav = new ModelAndView();
+        mav=selectType("select");
+        mav.setViewName("admin/updateAgoods");
+    	mav.addObject("goods",goodsnew);
+        if(ok==1) {
+        	mav.addObject("msg","商品修改成功！");
+		}else {
+			mav.addObject("msg","商品不存在！");
+		}
+		return mav;
+    }
     /**
      * 查询商品类别列表
      * @param operation
@@ -227,6 +243,29 @@ public class AdminController {
 		int ok=adminService.deleteType(typeid);
         ModelAndView mav = new ModelAndView();
         mav=selectType("delete");
+        if(ok==1) {
+			mav.addObject("msg","删除类型成功！");
+		}else {
+			mav.addObject("msg","类型不存在或删除异常！");
+		}
+		return mav;
+    }
+
+
+
+    
+    @RequestMapping("goOrderManager")
+    public ModelAndView goOrderManager(){
+		List<Order> orderList=adminService.goOrderManager();
+        ModelAndView mav = new ModelAndView("admin/orderManager");
+        mav.addObject("orderList",orderList);
+		return mav;
+    }
+    @RequestMapping("deleteOrder")
+    public ModelAndView deleteOrder(Integer orderid){
+		int ok=adminService.deleteOrder(orderid);
+        ModelAndView mav = new ModelAndView();
+        mav=goOrderManager();
         if(ok==1) {
 			mav.addObject("msg","删除类型成功！");
 		}else {

@@ -11,8 +11,7 @@
 <!-- 公告管理 -->
      <!-- 添加公告 -->
      <insert id="addNotice" parameterType="Notice">
-        insert into t_notice(noticetitle,noticecontent,noticetime)
-        values(#{noticetitle},#{noticecontent},now())
+        insert into t_notice(noticetitle,noticecontent,noticetime) values(#{noticetitle},#{noticecontent},now())
     </insert>
     <!-- 删除公告 -->
     <delete id="deleteNotice" parameterType="Int">
@@ -42,6 +41,9 @@
     <select id="productDetails" parameterType="int" resultType="Goods">
         select * from t_goods a,t_goodstype b where goodsid=#{goodsid} and a.goodstype=b.typeid
     </select>
+    <update id="updateGoods" parameterType="Goods">
+    	update t_goods set goodsname=#{goodsname},goodsoriginal=#{goodsoriginal},goodscurrent=#{goodscurrent},goodsstock=#{goodsstock},goodspicture="000",goodstype=#{typeid} where goodsid=#{goodsid}
+    </update>
     <select id="selectType" resultType="Goods">
         select * from t_goodstype
     </select>
@@ -49,12 +51,33 @@
         select * from t_goodstype where typename=#{typename}
     </select>
     <insert id="addType" parameterType="String">
-    	insert t_goodstype set typename=#{typename}
+    	insert into t_goodstype(typename) values (#{typename})
     </insert>
     <delete id="deleteType" parameterType="Goods">
     	delete from t_goodstype where typeid=#{typeid}
     </delete>
+
     
     
+
+
+    <select id="goOrderManager" resultMap="OrderMap">
+    	select useremail,orderid,ordermoney,orderstatus,ordertime
+    	from t_order_base a,t_user b where a.userid=b.userid
+    </select>
+    <resultMap type="Order" id="OrderMap">
+        <id property="orderid" column="orderid"/>
+        <result property="ordermoney" column="ordermoney"/>
+        <result property="orderstatus" column="orderstatus"/>
+        <result property="ordertime" column="ordertime"/>
+        <association property="user" javaType="User">
+            <id property="userid" column="userid"/>
+            <result property="useremail" column="useremail"/>
+        </association>
+    </resultMap>
+    <delete id="deleteOrder" parameterType="int">
+    	delete from t_order_details where orderid=#{orderid};
+    	delete from t_order_base where orderid=#{orderid};
+    </delete>
 
 </mapper>

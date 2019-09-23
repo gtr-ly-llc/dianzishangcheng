@@ -13,7 +13,8 @@
 <link href="<%=basePath %>css/admin/common.css" type="text/css" rel="stylesheet">
 </head>    
 <body>
-	<form action="updateSelectGoods.jsp" method="post" enctype="multipart/form-data">
+	<form action="<%=basePath %>admin/updateGoods" method="post"><!--  enctype="multipart/form-data" -->
+		<input type="text" name="goodsid" value="${goods.goodsid}" style="display:none"/>
 		<table border=1 style="border-collapse: collapse;display:inline-block;">
 			<caption>
 				<font size=4 face=华文新魏>修改商品信息</font>
@@ -21,31 +22,31 @@
 			<tr>
 				<td>名称<font color="red">*</font></td>
 				<td>
-					<input type="text" name="gname"/>
+					<input type="text" name="goodsname" value="${goods.goodsname}"/>
 				</td>
 			</tr>
 			<tr>
 				<td>原价<font color="red">*</font></td>
 				<td>
-					<input type="text" name="goprice"/>
+					<input type="text" name="goodsoriginal" value="${goods.goodsoriginal}"/>
 				</td>
 			</tr>
 			<tr>
 				<td>折扣价</td>
 				<td>
-					<input type="text" name="grprice"/>
+					<input type="text" name="goodscurrent" value="${goods.goodscurrent}"/>
 				</td>
 			</tr>
 			<tr>
 				<td>库存</td>
 				<td>
-					<input type="text" name="gstore"/>
+					<input type="text" name="goodsstock" value="${goods.goodsstock}"/>
 				</td>
 			</tr>
 			<tr>
 				<td>图片</td>
 				<td>
-					<input type="file" name="logoImage"/>
+					<input type="file" name="goodspicture" value="${goods.goodspicture}"/>
 					<br>
 						<img alt="" width="50" height="50"
 						src="<%=basePath %>images/admin/103.jpg"/>
@@ -58,8 +59,6 @@
 					<c:forEach items="${typeList}" var="type">
 						<option value="${type.typeid}">${type.typename}</option>
 					</c:forEach>
-					<option value="1">家电</option>
-					<option value="2">水果</option>
 				</select>
 				</td>
 			</tr>

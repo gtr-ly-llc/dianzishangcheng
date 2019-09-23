@@ -1,6 +1,8 @@
 package com.nt.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,10 +13,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nt.pojo.Goods;
+
 import com.nt.pojo.Notice;
+
+import com.nt.pojo.Order;
+import com.nt.pojo.ShopCart;
+
 import com.nt.pojo.User;
 import com.nt.service.UserService;
 import com.nt.util.RanCode;
@@ -92,8 +100,8 @@ public class UserController {
 		User us=userService.login(user);
 		if(us!=null) {
 			int id=us.getUserid();
-			mav.setViewName("before/index");
-			session.setAttribute("id",id);
+			mav=index();
+			session.setAttribute("uid",id);
 			mav.addObject("msg","");
 		}else {
 			mav.setViewName("before/login");
@@ -141,4 +149,92 @@ public class UserController {
 		mav.addObject("msg",msg);
 		return mav;
 	}
+	
+	@RequestMapping("goodsDetail")
+    public ModelAndView goodsDetail(Integer goodsid){
+		Goods goods=userService.goodsDetail(goodsid);
+        ModelAndView mav = new ModelAndView("before/goodsDetail");
+        mav.addObject("goods",goods);
+		return mav;
+    }
+	
+	@RequestMapping("addToCart")
+    public ModelAndView addToCart(ShopCart addshopcart,Integer goodsid){
+		Goods goods=new Goods();
+		goods.setGoodsid(goodsid);
+		addshopcart.setGoods(goods);
+		int ok=userService.addToCart(addshopcart);
+		String msg="";
+		if(ok==0) {
+			msg="购物车已有该商品！";
+		}else {
+			msg="商品加入成功！";
+		}
+        ModelAndView mav = new ModelAndView();
+        mav=goShopCart(addshopcart.getUserid());
+        mav.addObject("msg",msg);
+		return mav;
+    }
+	@RequestMapping("goShopCart")
+    public ModelAndView goShopCart(Integer userid){
+		List<ShopCart> cartList=userService.selectCartList(userid);
+		for(ShopCart s: cartList) {
+			System.out.println(s);
+		}
+        ModelAndView mav = new ModelAndView("before/cart");
+        mav.addObject("cartList",cartList);
+		return mav;
+    }
+	
+	@RequestMapping("saveBuyNumber")
+	@ResponseBody
+    public void saveBuyNumber(Integer userid,Integer goodsid,Integer buynumber,HttpServletResponse response){
+		ShopCart updatebuynumber=new ShopCart();
+		updatebuynumber.setUserid(userid);
+		updatebuynumber.setBuynumber(buynumber);
+		Goods goods=new Goods();
+		goods.setGoodsid(goodsid);
+		updatebuynumber.setGoods(goods);
+		int ok=userService.saveBuyNumber(updatebuynumber);
+		try {
+			response.getWriter().print(ok);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+	@RequestMapping("deleteFromCart")
+    public ModelAndView deleteFromCart(Integer userid,Integer goodsid){
+		int ok=userService.deleteFromCart(userid,goodsid);
+        ModelAndView mav = new ModelAndView();
+        mav=goShopCart(userid);
+		return mav;
+    }
+	@RequestMapping("goPlaceOrder")
+    public ModelAndView goPlaceOrder(Integer[] shopcartid){
+		List<Integer> shopcartidList=new ArrayList<Integer>();
+		for(int i = 0;i < shopcartid.length;i++) {
+			shopcartidList.add(shopcartid[i]); 
+		}
+		List<ShopCart> cartList=userService.goPlaceOrder(shopcartidList);
+        ModelAndView mav = new ModelAndView("before/orderconfirm");
+        mav.addObject("cartList",cartList);
+		return mav;
+    }
+	
+	@RequestMapping("placeOrder")
+    public ModelAndView placeOrder(Integer userid,Integer[] goodsid,Integer[] buynumber,double ordermoney){
+		List<Order> orderGoodsList=new ArrayList<Order>();
+		for(int i = 0;i < goodsid.length;i++) {
+			Goods goods=new Goods();
+			Order orderGoods=new Order();
+			goods.setGoodsid(goodsid[i]);
+			orderGoods.setGoods(goods);
+			orderGoods.setBuynumber(buynumber[i]);
+			orderGoodsList.add(orderGoods);
+		}
+		int ok=userService.placeOrder(userid,orderGoodsList,ordermoney);
+        ModelAndView mav = new ModelAndView("before/orderdone");
+		return mav;
+    }
 }

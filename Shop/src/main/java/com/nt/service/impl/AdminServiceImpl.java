@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import com.nt.mapper.AdminMapper;
 import com.nt.pojo.Notice;
 import com.nt.pojo.Goods;
+import com.nt.pojo.Order;
 import com.nt.pojo.User;
 import com.nt.service.AdminService;
 @Service
@@ -80,6 +81,10 @@ public class AdminServiceImpl implements AdminService{
     	return adminMapper.productDetails(goodsid);
     }
     @Override
+    public int updateGoods(Goods goods) {
+    	return adminMapper.updateGoods(goods);
+    }
+    @Override
     public List<Goods> selectType(){
     	List<Goods> typeList=adminMapper.selectType();
     	return typeList;
@@ -100,5 +105,15 @@ public class AdminServiceImpl implements AdminService{
     	return ok;
     }
 
-	
+
+
+    @Override
+    public List<Order> goOrderManager(){
+    	return adminMapper.goOrderManager();
+    }
+    @Override
+    public int deleteOrder(int orderid) {
+    	return adminMapper.deleteOrder(orderid);
+    }
+
 }

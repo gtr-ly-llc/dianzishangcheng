@@ -4,6 +4,8 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -26,9 +28,9 @@
 		function changeColor1(obj){
 			obj.className="";
 		}
-		function checkDel(id){
+		function checkDel(orderid){
   			if(window.confirm("是否删除该订单？")){
-  				window.location.href="/ch20/adminOrder/deleteorderManager?id="+id;
+  				window.event.returnValue = true;
   			}
   		}
 	</script>
@@ -66,6 +68,26 @@
 				&nbsp;
 			</td>
 		</tr>
+		<c:forEach items="${orderList}" var="order">
+			<tr onmousemove="changeColor(this)" onmouseout="changeColor1(this)">
+				<td>${order.orderid}</td>
+				<td>${order.user.useremail}</td>
+				<td>${order.ordermoney}</td>
+				<td>
+					<c:if test="${order.orderstatus==0}">
+						未付款
+					</c:if>
+					<c:if test="${order.orderstatus==1}">
+						已付款
+					</c:if>
+				</td>
+				<td><fmt:formatDate value="${order.ordertime}" pattern="yyyy-MM-dd"/></td>
+				<td>
+					<a href="<%=basePath %>admin/deleteOrder?orderid=${order.orderid}" onclick="return checkDel()">删除</a>
+					&nbsp;
+				</td>
+			</tr>
+		</c:forEach>
 	</table>
 </body>
 </html>

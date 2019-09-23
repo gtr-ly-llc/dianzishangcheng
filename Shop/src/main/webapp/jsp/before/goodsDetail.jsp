@@ -22,8 +22,10 @@
 </script>
 </head>
 <body>
-<iframe src="head.jsp" width="100%"> </iframe>
-	<form action="cart.jsp" name="putcartform" method="post">
+<iframe src="<%=basePath %>jsp/before/head.jsp" width="100%"> </iframe>
+	<form action="<%=basePath %>user/addToCart" name="putcartform" method="post">
+		<input type="text" style="display:none" name="userid" value="${uid}">
+		<input type="text" style="display:none" name="goodsid" value="${goods.goodsid}">
 		<div class="blank"></div>
 		<div class="block clearfix">
 			<div class="location ared">
@@ -34,29 +36,32 @@
 				<div class="imgInfo">
 					<input type="hidden" name="id"
 						value="1"/><img
-						src="<%=basePath %>images/before/103.jpg"
+						src="<%=basePath %>images/before/10${goods.goodspicture}.jpg"
 						width="230px" height="230px" />
 				</div>
 			</div>
 			<!--商品表述-->	
 			<div class="goods_desc">
 				<div class="bt">
-					水果1
+					${goods.goodsname}
 				</div>
 				<div class="goods_show">
 					<ul>
-						<li><span>价格:</span> <strong class="yj">12元</strong></li>
+						<li><span>价格:</span> <strong class="yj">${goods.goodsoriginal}</strong></li>
 						<li><span>折扣价:</span><strong
-							class="xj">10元</strong>
+							class="xj">${goods.goodscurrent}</strong>
 						</li>
-						<li><span>类型:</span>水果</li>
-						<li><span>购买数量:</span><input type="text" name="shoppingnum"
-							class="good_txt" value="1" /> (库存200件)</li>
+						<li><span>类型:</span>${goods.typename}</li>
+						<li><span>购买数量:</span><input type="text" name="buynumber"
+							class="good_txt" value="1" /> (库存${goods.goodsstock}件)</li>
 					</ul>
 				</div>
 				<p class="bottom10 top5">
 					<img src="<%=basePath %>images/before/goods_ann2.gif" style="cursor: pointer"
-						onclick="goCart()" />&nbsp;&nbsp;<input type="button"
+						onclick="goCart()" />
+						
+						
+						&nbsp;&nbsp;<input type="button"
 						style="cursor: pointer" class="sh_bnt2"
 						onclick="gofocus('1')"
 						value="关注" />

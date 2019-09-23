@@ -3,7 +3,7 @@ package com.nt.pojo;
 public class ShopCart {
 	private int shopcartid;
 	private int userid;
-	private int goodsid;
+	private Goods goods;
 	private int buynumber;
 	public int getShopcartid() {
 		return shopcartid;
@@ -17,11 +17,11 @@ public class ShopCart {
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
-	public int getGoodsid() {
-		return goodsid;
+	public Goods getGoods() {
+		return goods;
 	}
-	public void setGoodsid(int goodsid) {
-		this.goodsid = goodsid;
+	public void setGoods(Goods goods) {
+		this.goods = goods;
 	}
 	public int getBuynumber() {
 		return buynumber;
@@ -29,4 +29,10 @@ public class ShopCart {
 	public void setBuynumber(int buynumber) {
 		this.buynumber = buynumber;
 	}
+	@Override
+	public String toString() {
+		return "ShopCart [shopcartid=" + shopcartid + ", userid=" + userid + ", goods=" + goods + ", buynumber="
+				+ buynumber + "]";
+	}
+	
 }
