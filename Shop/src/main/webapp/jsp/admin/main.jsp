@@ -132,7 +132,7 @@ body {
 			<li><a>公告管理</a>
 				<ul>
 					<li><a href="<%=basePath %>jsp/admin/addNotice.jsp" target="center">添加公告</a></li>
-					<li><a href="<%=basePath %>jsp/admin/deleteNoticeSelect.jsp" target="center">删除公告</a></li>
+					<li><a href="<%=basePath %>admin/goDeleteNotice" target="center">删除公告</a></li>
 				</ul>
 			</li>
 			<li><a href="login.jsp">安全退出</a></li>

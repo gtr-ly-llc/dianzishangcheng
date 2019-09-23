@@ -4,6 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -44,24 +45,18 @@
 				<th width="100px">详情</th>
 				<th width="100px">删除</th>
 			</tr>
-				<tr onmousemove="changeColor(this)" onmouseout="changeColor1(this)">
-					<td>1</td>
-					<td>aaaaa</td>
-					<td>2019-09-09</td>
-					<td><a href="noticeDetail.jsp" target="_blank">详情</a></td>
-					<td>
-						<a href="javascript:checkDel('1')">删除</a>
-					</td>
-				</tr>
-				<tr onmousemove="changeColor(this)" onmouseout="changeColor1(this)">
-					<td>2</td>
-					<td>bbbbb</td>
-					<td>2019-09-08</td>
-					<td><a href="noticeDetail.jsp" target="_blank">详情</a></td>
-					<td>
-						<a href="javascript:checkDel('2')">鍒犻櫎</a>
-					</td>
-				</tr>
+			
+			<c:forEach items="${noticeList}" var="notice">
+			<tr>
+				<td>${notice.noticeid}</td>
+				<td>${notice.noticetitle}</td>
+				<td>${notice.noticecontent}</td>
+				<td>${notice.noticetime}</td>
+				<td>
+				<a href="<%=basePath %>admin/deleteNotice?noticeid=${notice.noticeid}">删除</a>
+				</td>
+			</tr>
+		</c:forEach>
 		</table>
 </body>
 </html>

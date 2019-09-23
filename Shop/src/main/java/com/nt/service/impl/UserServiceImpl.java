@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.nt.mapper.UserMapper;
 import com.nt.pojo.Goods;
+
+import com.nt.pojo.Notice;
+
 import com.nt.pojo.Order;
 import com.nt.pojo.ShopCart;
+
 import com.nt.pojo.User;
 import com.nt.service.UserService;
 
@@ -45,6 +49,13 @@ public class UserServiceImpl implements UserService{
     public List<Goods> newProduct(){
     	return userMapper.newProduct();
     }
+
+	@Override
+	public List<Notice> selectNotice() {
+		return userMapper.selectNotice();
+		
+	}
+
     @Override
     public Goods goodsDetail(int goodsid) {
     	return userMapper.goodsDetail(goodsid);
@@ -108,6 +119,7 @@ public class UserServiceImpl implements UserService{
     	//ok+=userMapper.addOrderDetails(userid,goodsidList);
     	return ok;
     }
+
 }
 
 

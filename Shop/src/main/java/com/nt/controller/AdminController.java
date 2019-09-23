@@ -7,9 +7,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
+import com.nt.pojo.Notice;
 import com.nt.pojo.Goods;
 import com.nt.pojo.Order;
 import com.nt.service.AdminService;
@@ -52,6 +54,49 @@ public class AdminController {
 		}
 		return mav;
     }
+
+	
+	//公告管理
+	/**
+	 * 添加公告页面
+	 * @return
+	 */
+	    @RequestMapping("/addNotice")
+	    public ModelAndView addNotice(Notice notice,HttpServletRequest request) {
+	    	int ok =adminService.addNotice(notice);
+	    	ModelAndView mav = new ModelAndView();
+	        if(ok==1) {
+	        	mav.addObject("msg","添加公告成功！");
+			}else {
+				mav.addObject("msg","此公告已存在！");
+			}
+			return mav;
+	    }
+	    
+	    @RequestMapping("goDeleteNotice")
+	    public ModelAndView goDeleteNotice() {
+	    	List<Notice> noticeList =adminService.goDeleteNotice();
+	    	ModelAndView mav = new ModelAndView("admin/deleteNoticeSelect");
+	    	mav.addObject("noticeList",noticeList);
+			return mav;
+	    }
+		@RequestMapping("/deleteNotice")
+		public ModelAndView  deleteNotice(Integer noticeid,HttpServletRequest request) {
+			int ok=adminService.deleteNotice(noticeid);
+	        ModelAndView mav = new ModelAndView();
+	        mav=selectType("delete");
+	        if(ok==1) {
+				mav.addObject("msg","删除公告成功！");
+			}else {
+				mav.addObject("msg","公告不存在或删除异常！");
+			}
+			return mav;
+		}
+		
+		 
+	
+	
+
 	/**
 	 * 添加商品页面
 	 * @return
@@ -205,6 +250,9 @@ public class AdminController {
 		}
 		return mav;
     }
+
+
+
     
     @RequestMapping("goOrderManager")
     public ModelAndView goOrderManager(){
@@ -225,4 +273,5 @@ public class AdminController {
 		}
 		return mav;
     }
+
 }

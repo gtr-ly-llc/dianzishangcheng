@@ -12,6 +12,7 @@
 <link href="<%=basePath %>css/admin/common.css" type="text/css" rel="stylesheet">
 </head>    
 <body>
+    <form action="<%=basePath %>admin/addNotice" method="post">
 	<table border=1 style="border-collapse: collapse">
 		<caption>
 			<font size=4 face=华文新魏>添加公告</font>
@@ -19,13 +20,13 @@
 		<tr>
 			<td>标题<font color="red">*</font></td>
 			<td>
-				<input type="text" name="ntitle"/>
+				<input type="text" name="noticetitle"/>
 			</td>
 		</tr>
 		<tr>
 			<td>内容<font color="red">*</font></td>
 			<td>
-				<textarea name="ncontent"></textarea>
+				<textarea name="noticecontent"></textarea>
 			</td>
 		</tr>
 		<tr>
@@ -37,5 +38,6 @@
 			</td>
 		</tr>
 	</table>
+	</form>
 </body>
 </html>

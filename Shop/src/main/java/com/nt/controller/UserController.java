@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nt.pojo.Goods;
+
+import com.nt.pojo.Notice;
+
 import com.nt.pojo.Order;
 import com.nt.pojo.ShopCart;
+
 import com.nt.pojo.User;
 import com.nt.service.UserService;
 import com.nt.util.RanCode;
@@ -36,10 +40,12 @@ public class UserController {
 		List<Goods> goodssalesList=userService.salesRanking();
 		List<Goods> goodspopularList=userService.popularRanking();
 		List<Goods> goodsnewList=userService.newProduct();
+		List<Notice> noticeList=userService.selectNotice();
         ModelAndView mav = new ModelAndView("before/index");
         mav.addObject("goodssalesList",goodssalesList);
         mav.addObject("goodspopularList",goodspopularList);
         mav.addObject("goodsnewList",goodsnewList);
+        mav.addObject("noticeList",noticeList);
 		return mav;
     }
 	/**

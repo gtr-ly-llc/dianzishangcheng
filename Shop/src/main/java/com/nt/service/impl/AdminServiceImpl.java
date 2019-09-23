@@ -2,11 +2,11 @@ package com.nt.service.impl;
 
 import java.util.Calendar;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.ui.Model;
 import com.nt.mapper.AdminMapper;
+import com.nt.pojo.Notice;
 import com.nt.pojo.Goods;
 import com.nt.pojo.Order;
 import com.nt.pojo.User;
@@ -20,6 +20,27 @@ public class AdminServiceImpl implements AdminService{
     	int u = adminMapper.login(adminname,adminpwd);
         return u;
      }
+
+    //公告管理
+    @Override
+	public int addNotice(Notice notice) {
+    	int ok=0;
+    	ok=adminMapper.addNotice(notice);
+    	return ok;
+	}
+  
+	@Override
+	public int deleteNotice(int noticeid) {
+		int ok=adminMapper.deleteNotice(noticeid);
+    	return ok;
+	}
+	 
+	@Override
+	public List<Notice> goDeleteNotice() {
+		List<Notice> noticeList=adminMapper.goDeleteNotice();
+    	return noticeList;
+	}
+
     @Override
     public List<Goods> selectGoods(){
     	List<Goods> goodsList=adminMapper.selectGoods();
@@ -83,6 +104,9 @@ public class AdminServiceImpl implements AdminService{
     	int ok=adminMapper.deleteType(typeid);
     	return ok;
     }
+
+
+
     @Override
     public List<Order> goOrderManager(){
     	return adminMapper.goOrderManager();
@@ -91,4 +115,5 @@ public class AdminServiceImpl implements AdminService{
     public int deleteOrder(int orderid) {
     	return adminMapper.deleteOrder(orderid);
     }
+
 }

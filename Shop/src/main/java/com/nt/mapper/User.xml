@@ -40,6 +40,14 @@
         order by goodsid 
         desc limit 0,8
     </select>
+
+    
+    <!-- 查询公告 -->
+     <select id="selectNotice" resultType="Notice">
+        select * from t_notice
+    </select>
+    
+
     <select id="goodsDetail" parameterType="int" resultType="Goods">
     	select * from t_goods a,t_goodstype b where a.goodstype=b.typeid and a.goodsid=#{goodsid}
     </select>
@@ -97,4 +105,5 @@
     		(#{orderid},#{ordergoods.goods.goodsid},#{ordergoods.buynumber})
     	</foreach>
     </insert>
+
 </mapper>

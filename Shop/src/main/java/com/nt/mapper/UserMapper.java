@@ -5,8 +5,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.nt.pojo.Goods;
+
+import com.nt.pojo.Notice;
+
 import com.nt.pojo.Order;
 import com.nt.pojo.ShopCart;
+
 import com.nt.pojo.User;
 
 public interface UserMapper {
@@ -22,6 +26,9 @@ public interface UserMapper {
 	public List<Goods> popularRanking();
 	
 	public List<Goods> newProduct();
+
+	public List<Notice> selectNotice();//查询公告
+
 	
 	public Goods goodsDetail(int goodsid);
 	
@@ -44,6 +51,7 @@ public interface UserMapper {
 	//public int addOrderDetails(Order order);
 	
 	public int addOrderDetails(@Param(value="orderid")int orderid,@Param(value="orderGoodsList")List<Order> orderGoodsList);
+
 }
 
 

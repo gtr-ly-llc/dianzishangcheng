@@ -92,9 +92,9 @@
 							</div>
 							<div class="post_list ared">
 								<ul>
-									<li><a href="javascript:openNotice('noticeDetail.jsp');">公告1</a></li>
-									<li><a href="javascript:openNotice('noticeDetail.jsp');">公告2</a></li>
-									<li><a href="javascript:openNotice('noticeDetail.jsp');">公告3</a></li>
+									<c:forEach items="${noticeList}" var="notice">
+										<li><a href="javascript:openNotice('noticeDetail.jsp');">${notice.noticetitle}</a></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
