@@ -70,7 +70,7 @@
 				<div class="all_zong">
 					<div class="front_daohang">
 						<ul>
-							<li class="backbj"><a href="<%=basePath %>user/index" target="_top">首页</a></li>
+							<li><a href="<%=basePath %>user/index" target="_top">首页</a></li>
 							<!-- 显示商品类型 -->
 							<li><a href="index.jsp" target="_top">水果</a></li>
 							<li><a href="index.jsp" target="_top">服装</a></li>
