@@ -7,10 +7,13 @@
         select * from t_user where useremail=#{useremail} 
     </select>
 	<insert id="register" parameterType="User">
-		insert into t_user(useremail,userpwd) values (#{useremail},#{userpwd})
+		insert into t_user(useremail,userpwd,salt) values (#{useremail},#{userpwd},#{salt})
 	</insert>
-    <select id="login" parameterType="User" resultType="User">
-        select * from t_user where useremail=#{useremail} and userpwd=#{userpwd}
+    <select id="login" parameterType="String" resultType="User">
+        select * from t_user where useremail=#{useremail}
+    </select>
+    <select id="getUser" parameterType="String" resultType="User">
+        select * from t_user where useremail=#{useremail}
     </select>
     <select id="salesRanking" resultType="Goods">
         select a.goodsid,goodsname,goodsoriginal,goodscurrent,goodspicture
@@ -47,6 +50,14 @@
         select * from t_notice
     </select>
     
+    <select id="selectType" resultType="Goods">
+        select * from t_goodstype
+    </select>
+    
+    <select id="showGoodsList" parameterType="int" resultType="Goods">
+        select goodsid,goodsname,goodsoriginal,goodscurrent,goodspicture 
+        from t_goods where goodstype=#{typeid}
+    </select>
 
     <select id="goodsDetail" parameterType="int" resultType="Goods">
     	select * from t_goods a,t_goodstype b where a.goodstype=b.typeid and a.goodsid=#{goodsid}

@@ -20,8 +20,6 @@
 </script>
 </head>
 <body>
-	<iframe src="<%=basePath %>jsp/before/head.jsp" width="100%"> </iframe>
-	<%-- <iframe src="<%=basePath %>jsp/before/head.jsp" name="main" width="100%"></iframe> --%>
 	<div class="blank"></div>
 	<div class="block clearfix">
 		<div class="AreaL">

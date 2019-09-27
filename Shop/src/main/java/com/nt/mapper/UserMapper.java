@@ -19,7 +19,9 @@ public interface UserMapper {
 	
 	public int register(User user);
 	
-	public User login(User user);
+	public User login(String useremail);
+	
+	public User getUser(String useremail);
 	
 	public List<Goods> salesRanking();
 	
@@ -29,6 +31,9 @@ public interface UserMapper {
 
 	public List<Notice> selectNotice();//查询公告
 
+	public List<Goods> selectType();
+	
+	public List<Goods> showGoodsList(int typeid);
 	
 	public Goods goodsDetail(int goodsid);
 	

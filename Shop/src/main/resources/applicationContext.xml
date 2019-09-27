@@ -10,7 +10,7 @@
      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd " >
 
     <!-- Spring配置文件 -->
 
@@ -37,6 +37,7 @@
     </bean>
 
     <!-- MyBatis的配置 -->
+    
     <!-- 扫描存放SQL语句的xml映射文件 -->
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="typeAliasesPackage" value="com.nt.pojo" />
@@ -60,4 +61,76 @@
         <property name="basePackage" value="com.nt.mapper" />
     </bean>
 
+	<!-- 配置事务管理 -->
+	<!-- <bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+	
+	<!-- 自定义Realm -->
+	<!-- <bean id="myRealm" class="com.nt.realm.AuthenticationRealm"/> -->
+	
+	<!-- 安全管理器 -->
+	<!-- <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="myRealm"/>
+	</bean> -->
+	
+	<!-- Shiro过滤器 -->
+	<!-- <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		Shiro的核心安全接口,这个属性是必须的
+		<property name="securityManager" ref="securityManager"/>
+		身份认证失败，则跳转到登录页面的配置
+		<property name="loginUrl" value="/jsp/before/login.jsp"/>
+		权限认证失败，则跳转到指定页面
+		<property name="unauthorizedUrl" value="/jsp/before/login.jsp"/>
+		Shiro连接约束配置,即过滤链的定义
+		<property name="filterChainDefinitions">
+			<value>
+	            /login=anon
+	            /logout=logout
+		    	/admin=authc
+		    	/student=roles[teacher]
+		    	/teacher=perms["user:create"]
+		    	/**=authc
+	   		</value>
+		</property>
+	</bean> -->
+	
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<!-- <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/> -->
+	
+	<!-- 开启Shiro注解 -->
+	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+  		<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+  	  <property name="securityManager" ref="securityManager"/>
+    </bean> -->
+  
+	<!-- 配置事务通知属性 -->
+    <!-- <tx:advice id="txAdvice" transaction-manager="transactionManager"> -->
+        <!-- 定义事务传播属性 -->
+        <!-- <tx:attributes>
+            <tx:method name="insert*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="edit*" propagation="REQUIRED" />
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="new*" propagation="REQUIRED" />
+            <tx:method name="set*" propagation="REQUIRED" />
+            <tx:method name="remove*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="change*" propagation="REQUIRED" />
+            <tx:method name="check*" propagation="REQUIRED" />
+            <tx:method name="get*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="find*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="load*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="*" propagation="REQUIRED" read-only="true" />
+        </tx:attributes>
+    </tx:advice> -->
+  
+    <!-- 配置事务切面 -->  
+    <!-- <aop:config>  
+		<aop:pointcut id="txPoint"
+            expression="execution(* com.nt.service.*.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint" />
+    </aop:config> -->
 </beans>
