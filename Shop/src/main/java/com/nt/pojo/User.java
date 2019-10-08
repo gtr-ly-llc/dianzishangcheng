@@ -4,6 +4,7 @@ public class User {
 	private int userid;
 	private String useremail;
 	private String userpwd;
+	private String salt;
 	public int getUserid() {
 		return userid;
 	}
@@ -21,6 +22,12 @@ public class User {
 	}
 	public void setUserpwd(String userpwd) {
 		this.userpwd = userpwd;
+	}
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 	@Override
     public String toString() {

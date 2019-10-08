@@ -4,6 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,10 +13,19 @@
 <link href="<%=basePath %>css/before/daohang.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath %>css/before/common.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath %>css/before/style.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 	function clearValue(){
 		document.myForm.mykey.value = "";
 	}
+	/* $(function() {
+		$("li").click(function() {
+			$('li').each(function(){
+				$(this).removeClass("");
+			});
+		});
+	}) */
 </script>
 </head>
 <body>
@@ -72,8 +82,9 @@
 						<ul>
 							<li class="backbj"><a href="<%=basePath %>user/index" target="_top">首页</a></li>
 							<!-- 显示商品类型 -->
-							<li><a href="index.jsp" target="_top">水果</a></li>
-							<li><a href="index.jsp" target="_top">服装</a></li>
+							<c:forEach items="${typeList}" var="type">
+								<li><a href="<%=basePath %>user/showGoodsList?typeid=${type.typeid}" target="_top">${type.typename}</a></li>
+							</c:forEach>
 							<li class="buy">
 								<p class="car">
 									<a href="<%=basePath %>user/goShopCart?userid=${uid}" target="_top">购物车</a>

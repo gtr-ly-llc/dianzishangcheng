@@ -46,8 +46,6 @@
 				<th width="100px">删除</th>
 			</tr>
 			
-			
-			
 			<c:forEach items="${noticeList}" var="notice">
 			<tr>
 				<td>${notice.noticeid}</td>

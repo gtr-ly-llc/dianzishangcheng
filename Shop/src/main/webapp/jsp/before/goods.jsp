@@ -28,54 +28,10 @@
 			<!--销售排行-->
 			<div class="box">
 				<div class="box_2">
-					<div class="top10Tit">
-						<span>销售排行</span>
-					</div>
-					<div class="top10List clearfix">
-						<c:forEach items="${goodssalesList}" var="sales">
-							<ul class="clearfix">
-							<li class="topimg">
-							<input type="text" value="${i=i+1}" style="display:none"/>
-							<img class="iteration" src="<%=basePath %>images/before/top_${i}.gif" />
-							<a href="<%=basePath %>user/goodsDetail?goodsid=${sales.goodsid}"> 
-								<img class="samllimg" alt="" src="<%=basePath %>images/before/10${i%9}.jpg" /></a></li>
-							<li class="iteration1">
-							<a href="<%=basePath %>jsp/before/goodsDetail.jsp">${sales.goodsname}</a><br />
-							原价：<font class="f1">${sales.goodsoriginal}</font><br />
-							现价：<font class="f1">${sales.goodscurrent}</font><br />
-							</li>
-							</ul>
-						</c:forEach>	
-					</div>
+					
 				</div>
 			</div>
 			<!--销售排行 end -->
-			<!--人气排行-->
-			<div class="blank5"></div>
-			<div class="box">
-				<div class="box_2">
-					<div class="top10Tit">
-						<span>人气排行</span>
-					</div>
-					<div class="top10List clearfix">
-						<c:forEach items="${goodspopularList}" var="popular">
-							<ul class="clearfix">
-							<li class="topimg">
-							<input type="text" value="${j=j+1}" style="display:none"/>
-							<img class="iteration" src="<%=basePath %>images/before/top_${j}.gif" />
-							<a href="<%=basePath %>user/goodsDetail?goodsid=${popular.goodsid}"> 
-								<img class="samllimg" alt="" src="<%=basePath %>images/before/10${j%9}.jpg" /></a></li>
-							<li class="iteration1">
-							<a href="<%=basePath %>jsp/before/goodsDetail.jsp">${popular.goodsname}</a><br />
-							原价：<font class="f1">${popular.goodsoriginal}</font><br />
-							现价：<font class="f1">${popular.goodscurrent}</font><br />
-							</li>
-							</ul>
-						</c:forEach>
-					</div>
-				</div>
-			</div>
-			<!--人气排行 end -->
 		</div>
 		<div class="AreaR">
 			<div class="AreaR">
@@ -114,7 +70,7 @@
 						</div>
 						<div class="itemgood_nr clearfix">
 							<ul>
-								<c:forEach items="${goodsnewList}" var="newgoods">
+								<c:forEach items="${goodsList}" var="newgoods">
 									<li>
 										<div>
 											<input type="text" value="${k=k+1}" style="display:none"/>

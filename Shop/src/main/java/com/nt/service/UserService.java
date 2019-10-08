@@ -14,7 +14,9 @@ import com.nt.pojo.User;
 
 public interface UserService {
 	
-	public User login(User user);
+	public User login(String user);
+	
+	public User getUser(String username);
 	
 	public int register(User user);
 	
@@ -26,6 +28,10 @@ public interface UserService {
 
 
 	public List<Notice> selectNotice();//查询公告
+	
+	public List<Goods> selectType();
+	
+	public List<Goods> showGoodsList(int typeid);
 
 	
 	public Goods goodsDetail(int goodsid);

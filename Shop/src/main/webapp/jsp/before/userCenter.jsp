@@ -38,6 +38,10 @@
 					</tr> 
 						<!-- 用户中心的订单信息 -->
 						
+						
+						
+						
+						
 				</table>
 			</div>
 		</div>
@@ -60,57 +64,13 @@
 						<td colspan="5" height="15px"
 							style="border: 0 none; background: #FFF"></td>
 					</tr>  
-						<tr>
-							<td bgcolor="#ffffff" align="center">1</td>
-							<td bgcolor="#ffffff"  align="center">水果1</td>
-							<td align="center" bgcolor="#ffffff" height="60px"> <img
-									style="width: 50px; height: 50px;"
-									src="<%=basePath %>images/before/103.jpg" border="0"
-									title="${mf.gname}" /> </td>
-							<td align="center" bgcolor="#ffffff">10</td>
-							<td align="center" bgcolor="#ffffff">
-								<a style="text-decoration: none;" class="f6" href="goodsDetail.jsp">去看看</a>
-							</td>
-						</tr>
 						
-						<tr>
-							<td bgcolor="#ffffff" align="center">1</td>
-							<td bgcolor="#ffffff"  align="center">水果1</td>
-							<td align="center" bgcolor="#ffffff" height="60px"> <img
-									style="width: 50px; height: 50px;"
-									src="<%=basePath %>images/before/103.jpg" border="0"
-									title="${mf.gname}" /> </td>
-							<td align="center" bgcolor="#ffffff">10</td>
-							<td align="center" bgcolor="#ffffff">
-								<a style="text-decoration: none;" class="f6" href="goodsDetail.jsp">去看看</a>
-							</td>
-						</tr>
+						<!-- 用户中心的我的关注 -->
 						
-						<tr>
-							<td bgcolor="#ffffff" align="center">1</td>
-							<td bgcolor="#ffffff"  align="center">水果1</td>
-							<td align="center" bgcolor="#ffffff" height="60px"> <img
-									style="width: 50px; height: 50px;"
-									src="<%=basePath %>images/before/103.jpg" border="0"
-									title="${mf.gname}" /> </td>
-							<td align="center" bgcolor="#ffffff">10</td>
-							<td align="center" bgcolor="#ffffff">
-								<a style="text-decoration: none;" class="f6" href="goodsDetail.jsp">去看看</a>
-							</td>
-						</tr>
 						
-						<tr>
-							<td bgcolor="#ffffff" align="center">1</td>
-							<td bgcolor="#ffffff"  align="center">水果1</td>
-							<td align="center" bgcolor="#ffffff" height="60px"> <img
-									style="width: 50px; height: 50px;"
-									src="<%=basePath %>images/before/103.jpg" border="0"
-									title="${mf.gname}" /> </td>
-							<td align="center" bgcolor="#ffffff">10</td>
-							<td align="center" bgcolor="#ffffff">
-								<a style="text-decoration: none;" class="f6" href="goodsDetail.jsp">去看看</a>
-							</td>
-						</tr>
+						
+						
+						
 				</table>
 			</div>
 		</div>

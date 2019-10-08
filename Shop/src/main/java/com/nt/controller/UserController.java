@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,7 @@ import com.nt.pojo.Order;
 import com.nt.pojo.ShopCart;
 
 import com.nt.pojo.User;
+import com.nt.realm.MD5Hash;
 import com.nt.service.UserService;
 import com.nt.util.RanCode;
 @Controller
@@ -36,16 +39,19 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("index")
-    public ModelAndView index(){
+    public ModelAndView index(HttpServletRequest request){
 		List<Goods> goodssalesList=userService.salesRanking();
 		List<Goods> goodspopularList=userService.popularRanking();
 		List<Goods> goodsnewList=userService.newProduct();
 		List<Notice> noticeList=userService.selectNotice();
+		List<Goods> typeList=userService.selectType();
         ModelAndView mav = new ModelAndView("before/index");
         mav.addObject("goodssalesList",goodssalesList);
         mav.addObject("goodspopularList",goodspopularList);
         mav.addObject("goodsnewList",goodsnewList);
         mav.addObject("noticeList",noticeList);
+        HttpSession session = request.getSession();
+        session.setAttribute("typeList",typeList);
 		return mav;
     }
 	/**
@@ -87,30 +93,35 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("userLogin")
-    public ModelAndView userLogin(User user,String code,HttpServletRequest request){
-		HttpSession session = request.getSession();
-		ModelAndView mav = new ModelAndView();
-		String verifyCode= (String) session.getAttribute("randomcode_key");
-        if(!code.equalsIgnoreCase(verifyCode)){
-        	mav.setViewName("before/login");
-        	mav.addObject("msg","验证码错误！");
-        	return mav;
-        }
-		User us=userService.login(user);
-		if(us!=null) {
-			int id=us.getUserid();
-			mav=index();
-			session.setAttribute("uid",id);
-			mav.addObject("msg","");
-		}else {
-			mav.setViewName("before/login");
-			if(user.getUseremail()!=""&&user.getUseremail()!=null) {
-				mav.addObject("msg","登录信息错误！");
-			}
-		}
-		return mav;
-    }
+//	@RequestMapping("userLogin")
+//    public ModelAndView userLogin(User user,String code,HttpServletRequest request){
+//		HttpSession session = request.getSession();
+//		ModelAndView mav = new ModelAndView();
+//		String verifyCode= (String) session.getAttribute("randomcode_key");
+//        if(!code.equalsIgnoreCase(verifyCode)){
+//        	mav.setViewName("before/login");
+//        	mav.addObject("msg","验证码错误！");
+//        	return mav;
+//        }
+//        if(MD5Hash.login(user)) 
+//        	System.out.println("登录成功");
+//        else
+//        	System.out.println("登录失败");
+////		User us=userService.login(user);
+////		if(us!=null) {
+////			int id=us.getUserid();
+////			mav=index(request);
+////			session.setAttribute("uid",id);
+////			mav.addObject("msg","");
+////		}else {
+////			mav.setViewName("before/login");
+////			if(user.getUseremail()!=""&&user.getUseremail()!=null) {
+////				mav.addObject("msg","登录信息错误！");
+////			}
+////		}
+//        mav=index(request);
+//		return mav;
+//    }
 	/**
 	 * 注册界面
 	 * @return
@@ -137,7 +148,8 @@ public class UserController {
         	mav.addObject("msg","验证码错误！");
         	return mav;
         }
-        int i=userService.register(user);
+        User afteruser=MD5Hash.encryption(user);
+        int i=userService.register(afteruser);
 		String msg="";
 		if(i==0) {
 			msg="用户名已存在！";
@@ -149,6 +161,16 @@ public class UserController {
 		mav.addObject("msg",msg);
 		return mav;
 	}
+	
+	@RequestMapping("showGoodsList")
+    public ModelAndView showGoodsList(Integer typeid){
+		List<Goods> goodsList=userService.showGoodsList(typeid);
+		List<Notice> noticeList=userService.selectNotice();
+        ModelAndView mav = new ModelAndView("before/goods");
+        mav.addObject("goodsList",goodsList);
+        mav.addObject("noticeList",noticeList);
+		return mav;
+    }
 	
 	@RequestMapping("goodsDetail")
     public ModelAndView goodsDetail(Integer goodsid){

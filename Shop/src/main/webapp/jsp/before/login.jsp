@@ -51,7 +51,7 @@
 			document.form.action="";
 		}
     	window.onload = function() {
-    		var msg="${msg}";
+    		var msg="${error}";
 			if(msg!=""&&msg!=null){
 				alert(msg);
 			}
@@ -65,7 +65,7 @@
   <body>
   	<iframe src="<%=basePath %>jsp/before/head.jsp" width="100%"> </iframe>
   	<center>
-  	<form name="form" action="<%=basePath %>user/userLogin" method="post" onsubmit="return gogo()">
+  	<form name="form" action="<%=basePath %>login" method="post" onsubmit="return gogo()">
 	<table border="0">
 		<tr>
 			<td colspan="2"><img src="<%=basePath %>images/admin/login.gif"></td>

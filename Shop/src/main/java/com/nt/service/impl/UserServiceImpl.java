@@ -23,10 +23,14 @@ public class UserServiceImpl implements UserService{
 	@Autowired
     UserMapper userMapper;
     @Override
-    public User login(User user) {
+    public User login(String user) {
     	User u = userMapper.login(user);
         return u;
      }
+    @Override
+    public User getUser(String useremail) {
+    	return userMapper.getUser(useremail);
+    }
     @Override
     public int register(User user) {
     	int i=0;
@@ -53,9 +57,18 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<Notice> selectNotice() {
 		return userMapper.selectNotice();
-		
 	}
-
+	
+	@Override
+    public List<Goods> selectType(){
+    	List<Goods> typeList=userMapper.selectType();
+    	return typeList;
+    }
+	@Override
+	public List<Goods> showGoodsList(int typeid){
+		return userMapper.showGoodsList(typeid);
+	}
+	
     @Override
     public Goods goodsDetail(int goodsid) {
     	return userMapper.goodsDetail(goodsid);
