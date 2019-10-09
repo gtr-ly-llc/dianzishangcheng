@@ -41,8 +41,18 @@
 							</p>
 						</td>
 						<td>
+							<p id="content">
+								<a href="<%=basePath %>user/facelogin" target="_top">人脸登录</a>
+							</p>
+						</td>
+						<td>
 							<p>
 								<a href="<%=basePath %>user/register" target="_top">注册</a>
+							</p>
+						</td>
+						<td>
+							<p id="content">
+								<a href="<%=basePath %>user/facerigister" target="_top">人脸登录</a>
 							</p>
 						</td>
 						<td><span class="xx">|</span><a href="userCenter.jsp" target="_top">用户中心</a><span

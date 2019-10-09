@@ -63,6 +63,16 @@ public class UserController {
         ModelAndView mav = new ModelAndView("before/login");
 		return mav;
     }
+	@RequestMapping("facelogin")
+    public ModelAndView facelogin(){
+        ModelAndView mav = new ModelAndView("before/facelogin");
+		return mav;
+    }
+	@RequestMapping("facerigister")
+    public ModelAndView facerigister(){
+        ModelAndView mav = new ModelAndView("before/facerigister");
+		return mav;
+    }
     /**
 	 * 获取生成验证码显示到 UI 界面
 	 * @param request

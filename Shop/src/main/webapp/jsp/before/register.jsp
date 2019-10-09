@@ -55,6 +55,9 @@
 	function changeCode() {
         $("#code").attr("src", "<%=basePath %>user/checkCode?t="+Math.random());
     }
+    function openFace() {
+    	document.getElementById("face").src="<%=basePath %>jsp/before/facerigister.jsp";
+    }
 </script>
 </head>
 <body>
@@ -80,14 +83,17 @@
 							<tr>
 								<td width="16%" align="right"><span class="cl_f30">*</span>
 									E-mail：</td>
-								<td width="59%" colspan="3"><input type="text" name="useremail"
+								<td width="46%" colspan="3"><input type="text" name="useremail"
 									id="textfield" class="my_txt_350" value="" /></td>
-								<td width="25%"></td>
+								<td width="38%" rowspan="10" valign="top">
+									<a href="#" onclick="openFace()">录入人脸</a>
+									<iframe id="face" name="face" src="" frameBorder="0" scrolling="no" width="100%" height="260px"></iframe>
+								</td>
 							</tr>
 							<tr>
 								<td align="right">&nbsp;</td>
 								<td colspan="3" style="font-size: 12px; padding-bottom: 25px;">
-									（有效的E-mail地址才能收到激活码，帐户在激活后才能享受网站服务。）</td>
+									提示：。。。</td>
 							</tr>
 							<tr>
 								<td align="right"><span class="cl_f30">*</span> 密码：</td>
@@ -98,7 +104,7 @@
 							<tr>
 								<td align="right">&nbsp;</td>
 								<td colspan="3" style="font-size: 12px; padding-bottom: 25px;">
-									（为了您帐户的安全，建议使用字符+数字等多种不同类型的组合，且长度大于5位。）</td>
+									提示：。。。</td>
 							</tr>
 							<tr>
 								<td align="right"><span class="cl_f30">*</span> 重复密码：</td>
