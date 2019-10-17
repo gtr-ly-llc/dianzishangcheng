@@ -6,14 +6,20 @@
 	<select id="existUser" parameterType="User" resultType="User">
         select * from t_user where useremail=#{useremail} 
     </select>
+    <select id="getUserID" resultType="int">
+        select max(userid) from t_user
+    </select>
 	<insert id="register" parameterType="User">
-		insert into t_user(useremail,userpwd,salt) values (#{useremail},#{userpwd},#{salt})
+		insert into t_user(userid,useremail,userpwd,salt) values (#{userid},#{useremail},#{userpwd},#{salt})
 	</insert>
     <select id="login" parameterType="String" resultType="User">
         select * from t_user where useremail=#{useremail}
     </select>
     <select id="getUser" parameterType="String" resultType="User">
         select * from t_user where useremail=#{useremail}
+    </select>
+    <select id="getUserFromID" parameterType="int" resultType="User">
+        select * from t_user where userid=#{userid}
     </select>
     <select id="salesRanking" resultType="Goods">
         select a.goodsid,goodsname,goodsoriginal,goodscurrent,goodspicture

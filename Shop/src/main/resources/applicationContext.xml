@@ -10,7 +10,7 @@
      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd " >
 
     <!-- Spring配置文件 -->
 
@@ -26,7 +26,7 @@
             <value>com.mysql.jdbc.Driver</value>
         </property>
         <property name="url">
-            <value>jdbc:mysql://localhost:3306/shop?characterEncoding=UTF-8&amp;allowMultiQueries=true</value>
+            <value>jdbc:mysql://localhost:3306/shop?characterEncoding=UTF-8&amp;allowMultiQueries=true</value><!-- serverTimezone=UTC&amp;useSSL=false; -->
         </property>
         <property name="username">
             <value>root</value>

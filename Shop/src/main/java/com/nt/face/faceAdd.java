@@ -36,7 +36,7 @@ public class faceAdd {
     * https://ai.baidu.com/file/470B3ACCA3FE43788B5A963BF0B625F3
     * 下载
     */
-    public static String add(String despath) {
+    public static String add(int userid,String despath) {
         // 请求url
         String url = "https://aip.baidubce.com/rest/2.0/face/v3/faceset/user/add";
         try {
@@ -48,14 +48,13 @@ public class faceAdd {
 
             
 
-            String param = "user_id=" + "user" + "&user_info=" + "userInfo5" + "&group_id=" + "shopUser" + "&image_type=BASE64" + "&image=" + imgParam ;
+            String param = "user_id=" + userid + "&user_info=" + "userInfo5" + "&group_id=" + "shopUser" + "&image_type=BASE64" + "&image=" + imgParam ;
             AuthService auth = new AuthService();
             
             // 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
             String accessToken = auth.getAuth();
 
             String result = HttpUtil.post(url, accessToken, param);
-            System.out.println("addface:"+result);
             String score = result.split(",")[1].split(":")[1];
             return score;
         } catch (Exception e) {

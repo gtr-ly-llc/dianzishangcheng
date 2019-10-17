@@ -4,9 +4,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nt.face.faceAdd;
 import com.nt.mapper.UserMapper;
 import com.nt.pojo.Goods;
 
@@ -32,13 +36,30 @@ public class UserServiceImpl implements UserService{
     	return userMapper.getUser(useremail);
     }
     @Override
-    public int register(User user) {
+    public int getUserID() {
+    	int i=userMapper.getUserID();
+    	System.out.println(i);
+    	return i+1;
+    }
+    @Override
+    public User getUserFromID(int userid) {
+    	return userMapper.getUserFromID(userid);
+    }
+    @Override
+    public int register(HttpServletRequest request,User user) {
     	int i=0;
     	User us=userMapper.existUser(user);
     	if(us!=null) {
     		return i;
     	}
     	i=userMapper.register(user);
+    	HttpSession session = request.getSession();
+    	String facePath=(String)session.getAttribute("facePath");
+    	System.out.println(facePath);
+    	if(facePath!=null&&facePath!="") {
+	    	faceAdd add = new faceAdd();
+	    	String score = add.add(user.getUserid(),facePath);
+    	}
     	return i;
     }
     @Override

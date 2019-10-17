@@ -28,10 +28,31 @@ public class addFace extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String despath = request.getParameter("message");
-		faceAdd add = new faceAdd();
-		String score = add.add(despath);
-		System.out.println("addFace+++"+score);
-		response.getWriter().println(score);
+		
+		faceSearch search = new faceSearch();
+		String result = search.search(despath);
+//		String score = result.split(",")[5].split(":")[1];
+		String[] resultList = result.split(",");
+        String score="0";
+        if(resultList.length>=9) {
+        	score=resultList[9].split(":")[1];
+        }
+		if(score.length()==5) {
+			request.getSession().setAttribute("facePath",despath);
+			response.getWriter().println(despath);
+			return;
+		}
+		int scoreMatch = Integer.parseInt(score.split("\\.")[0]);
+		if(scoreMatch>80){
+			request.getSession().setAttribute("facePath","");
+			response.getWriter().print("EXIST!");
+		}else {
+			request.getSession().setAttribute("facePath",despath);
+//			faceAdd add = new faceAdd();
+//			String score = add.add(despath);
+//			System.out.println("addFace+++"+score);
+			response.getWriter().println(despath);
+		}
 	}
 
 	/**

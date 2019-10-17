@@ -1,16 +1,12 @@
 package com.nt.face;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.http.client.methods.CloseableHttpResponse;
 
 /**
  * Servlet implementation class loginServlet
@@ -38,7 +34,7 @@ public class loginServlet extends HttpServlet {
 		System.out.println("score:"+score);*/
 		faceSearch search = new faceSearch();
 		String result = search.search(despath);
-		response.setContentType("text/html; charset=utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		response.getWriter().println(result);
 		
 	}

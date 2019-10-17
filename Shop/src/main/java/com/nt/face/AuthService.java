@@ -1,14 +1,4 @@
-﻿/**  
- * All rights Reserved, Designed By liufuqiang
- * @Title:  AuthService.java   
- * @Package faceLogin   
- * @Description:    TODO
- * @author: LiuFuqiang     
- * @date:   2019年5月6日 下午1:24:16   
- * @version V1.0 
- * @Copyright: 2019 liufuqiang All rights reserved. 
- */
-package com.nt.face;
+﻿package com.nt.face;
 
 import org.json.JSONObject;
 

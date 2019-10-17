@@ -4,12 +4,10 @@ import java.util.Calendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import com.nt.mapper.AdminMapper;
 import com.nt.pojo.Notice;
 import com.nt.pojo.Goods;
 import com.nt.pojo.Order;
-import com.nt.pojo.User;
 import com.nt.service.AdminService;
 @Service
 public class AdminServiceImpl implements AdminService{

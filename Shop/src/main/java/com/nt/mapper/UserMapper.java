@@ -17,6 +17,10 @@ public interface UserMapper {
 	
 	public User existUser(User user);
 	
+	public int getUserID();
+	
+	public User getUserFromID(int userid);
+	
 	public int register(User user);
 	
 	public User login(String useremail);

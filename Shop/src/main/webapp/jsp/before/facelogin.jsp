@@ -88,12 +88,24 @@
 	        data:{
 	            message:imgSrc
 	        },
-	      	success:function(score){
-	          	var scoreMatch = score.split(".")[0];if(scoreMatch>80){window.location="loginSuccess.jsp"}else{return;}
+	      	success:function(result){
+	      		var id = result.split("user_list")[1].split(",")[1].split(":")[1].split("\"")[1];
+	      		var score = result.split("user_list")[1].split(",")[3].split(":")[1].split(".")[0];
+	      		alert(score);
+	          	if(score>80){
+	          		document.write("<form action='<%=basePath %>faceLogin' method='post' name='form1' style='display:none'>");
+	          	    document.write("<input type='hidden' name='userid' value='"+id+"'/>");
+	          	    document.write("</form>");
+	          	    document.form1.submit();
+	          		
+	          		alert("12");
+	          		return;
+	          	}
+	          	return;
 	        }
-	    })
+	    });
 	}
- setInterval("jiance()","10100");  //每隔一秒执行一次函数截图
+ setInterval("jiance()","5100");  //每隔一秒执行一次函数截图
 	
 
     //将图片Base64 转成文件

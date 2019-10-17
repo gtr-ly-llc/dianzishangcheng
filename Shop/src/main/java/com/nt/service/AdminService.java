@@ -1,6 +1,5 @@
 package com.nt.service;
 
-import org.springframework.ui.Model;
 import com.nt.pojo.Notice;
 import java.util.List;
 import com.nt.pojo.Goods;

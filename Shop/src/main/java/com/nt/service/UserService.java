@@ -1,7 +1,8 @@
 package com.nt.service;
 
-import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.nt.pojo.Goods;
 
@@ -18,7 +19,11 @@ public interface UserService {
 	
 	public User getUser(String username);
 	
-	public int register(User user);
+	public int getUserID();
+	
+	public User getUserFromID(int userid);
+	
+	public int register(HttpServletRequest request,User user);
 	
 	public List<Goods> salesRanking();
 	

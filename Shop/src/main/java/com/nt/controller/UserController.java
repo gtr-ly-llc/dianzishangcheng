@@ -2,7 +2,6 @@ package com.nt.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -159,7 +156,9 @@ public class UserController {
         	return mav;
         }
         User afteruser=MD5Hash.encryption(user);
-        int i=userService.register(afteruser);
+        int userid=userService.getUserID();
+        afteruser.setUserid(userid);
+        int i=userService.register(request,afteruser);
 		String msg="";
 		if(i==0) {
 			msg="用户名已存在！";

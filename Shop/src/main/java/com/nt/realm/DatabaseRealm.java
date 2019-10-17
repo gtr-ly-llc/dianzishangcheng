@@ -2,7 +2,7 @@ package com.nt.realm;
  
 import java.util.Set;
 
-import javax.servlet.http.HttpSession;
+import javax.annotation.PostConstruct;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -12,7 +12,6 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,12 +46,10 @@ public class DatabaseRealm extends AuthorizingRealm {
  
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-    	System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-    	System.out.println(this.getCredentialsMatcher());
         //获取账号密码
         UsernamePasswordToken t = (UsernamePasswordToken) token;
         String useremail= token.getPrincipal().toString();
-        //String userpwd= new String( t.getPassword());
+        String userpwd= new String( t.getPassword());
         //获取数据库中的密码
          
         User user = userService.getUser(useremail);
@@ -63,8 +60,28 @@ public class DatabaseRealm extends AuthorizingRealm {
         //认证信息里存放账号密码, getName() 是当前Realm的继承方法,通常返回当前类名 :databaseRealm
         //盐也放进去
         //这样通过shiro.ini里配置的 HashedCredentialsMatcher 进行自动校验
-        SimpleAuthenticationInfo a = new SimpleAuthenticationInfo(useremail,passwordInDB,ByteSource.Util.bytes(salt),getName());
-        System.out.println(a.toString());
-        return a;
+        System.out.println("*111111*");
+        System.out.println("*222222*"+userpwd);
+        if(userpwd.length()<20) {
+        	SimpleAuthenticationInfo a= new SimpleAuthenticationInfo(useremail,passwordInDB,ByteSource.Util.bytes(salt),getName());
+        	 System.out.println("*3245*");
+        	 return a;
+        }
+        else {
+        	SimpleAuthenticationInfo a= new SimpleAuthenticationInfo(useremail,passwordInDB,null,getName());
+        	System.out.println("*44444*");
+        	return a;
+        }
+        
+//        System.out.println("*33333*"+a);
+//        System.out.println(getType(a)+"*111111*"+a+"*2222*"+t);
+        
     }
+    public static String getType(Object o){ //获取变量类型方法
+    	return o.getClass().toString(); //使用int类型的getClass()方法
+    	}
+//    @PostConstruct  
+//    public void initCredentialsMatcher() {    
+//       setCredentialsMatcher(new CustomCredentialsMatcher());    
+//    }
 }
