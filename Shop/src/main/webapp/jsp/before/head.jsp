@@ -17,7 +17,7 @@
 
 <script type="text/javascript">
 	function clearValue(){
-		document.myForm.mykey.value = "";
+		document.myForm.username.value = "";
 	}
 	/* $(function() {
 		$("li").click(function() {
@@ -67,9 +67,9 @@
 			</div>
 			<div class="back_search">
 				<div class="back_search_red">
-					<form action="searchResult.jsp" name="myForm" method="post" target="_top">
+					<form action="<%=basePath %>user/searchGoods" name="myForm" method="post" target="_top">
 						<div class="div2">
-							<input type="text" name="mykey" class="txt" value="请输入您要查询的内容"  onfocus="clearValue()" />
+							<input type="text" name="username" class="txt" value="请输入您要查询的内容"  onfocus="clearValue()" />
 						</div>
 						<div class="div1">
 							<input type="submit" class="an"  value="搜索" />

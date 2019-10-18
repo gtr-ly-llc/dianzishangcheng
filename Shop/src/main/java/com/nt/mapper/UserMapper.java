@@ -39,6 +39,8 @@ public interface UserMapper {
 	
 	public List<Goods> showGoodsList(int typeid);
 	
+	public List<Goods> searchGoods(String username);
+	
 	public Goods goodsDetail(int goodsid);
 	
 	public ShopCart existShopCart(ShopCart addshopcart);

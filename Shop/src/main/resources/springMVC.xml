@@ -47,4 +47,7 @@
     <bean id="exceptionHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
     </bean>
     <bean class="com.nt.exception.DefaultExceptionHandler"/>
+	<!-- 文件上传 -->
+	<!-- id必须是multipartResolver，内部绑定好，不能改动 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 </beans>

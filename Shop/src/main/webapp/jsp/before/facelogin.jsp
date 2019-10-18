@@ -91,14 +91,11 @@
 	      	success:function(result){
 	      		var id = result.split("user_list")[1].split(",")[1].split(":")[1].split("\"")[1];
 	      		var score = result.split("user_list")[1].split(",")[3].split(":")[1].split(".")[0];
-	      		alert(score);
 	          	if(score>80){
 	          		document.write("<form action='<%=basePath %>faceLogin' method='post' name='form1' style='display:none'>");
 	          	    document.write("<input type='hidden' name='userid' value='"+id+"'/>");
 	          	    document.write("</form>");
 	          	    document.form1.submit();
-	          		
-	          		alert("12");
 	          		return;
 	          	}
 	          	return;

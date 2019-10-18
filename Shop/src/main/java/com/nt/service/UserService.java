@@ -38,6 +38,7 @@ public interface UserService {
 	
 	public List<Goods> showGoodsList(int typeid);
 
+	public List<Goods> searchGoods(String username);
 	
 	public Goods goodsDetail(int goodsid);
 	

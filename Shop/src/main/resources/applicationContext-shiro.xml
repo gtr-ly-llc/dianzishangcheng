@@ -36,6 +36,7 @@
                 /jsp/before/facerigister.jsp=anon
                 /jsp/before/userexist.jsp=anon
                 /jsp/before/success.jsp=anon
+                /jsp/admin/**=anon
                 /user/facelogin=anon
                 /user/facerigister=anon
                 /addFace=anon
@@ -47,10 +48,12 @@
                 /user/checkCode=anon
                 /user/showGoodsList=anon
                 /user/userRegister=anon
+                /user/searchGoods=anon
                 /assets/**=anon
                 /css/**=anon
                 /fonts/**=anon
                 /images/**=anon
+                /admin/**=anon
                 /js/**=anon
                 /index.jsp=anon
                 <!-- /static/**=anon -->

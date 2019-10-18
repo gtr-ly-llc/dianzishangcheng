@@ -36,7 +36,7 @@
 				<div class="imgInfo">
 					<input type="hidden" name="id"
 						value="1"/><img
-						src="<%=basePath %>images/before/10${goods.goodspicture}.jpg"
+						src="/shop2/${goods.goodspicture}"
 						width="230px" height="230px" />
 				</div>
 			</div>

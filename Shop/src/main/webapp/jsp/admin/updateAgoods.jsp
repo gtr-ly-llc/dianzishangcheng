@@ -13,7 +13,7 @@
 <link href="<%=basePath %>css/admin/common.css" type="text/css" rel="stylesheet">
 </head>    
 <body>
-	<form action="<%=basePath %>admin/updateGoods" method="post"><!--  enctype="multipart/form-data" -->
+	<form action="<%=basePath %>admin/updateGoods" method="post" enctype="multipart/form-data"><!--  enctype="multipart/form-data" -->
 		<input type="text" name="goodsid" value="${goods.goodsid}" style="display:none"/>
 		<table border=1 style="border-collapse: collapse;display:inline-block;">
 			<caption>
@@ -46,10 +46,10 @@
 			<tr>
 				<td>图片</td>
 				<td>
-					<input type="file" name="goodspicture" value="${goods.goodspicture}"/>
+					<input type="file" name="image" id="image" accept="image/*"/>
 					<br>
 						<img alt="" width="50" height="50"
-						src="<%=basePath %>images/admin/103.jpg"/>
+						src="/shop2/${goods.goodspicture}"/>
 				</td>
 			</tr>
 			<tr>
@@ -95,8 +95,7 @@
 				<td>图片</td>
 				<td>
 					<br>
-						<img alt="" width="50" height="50"
-						src="<%=basePath %>images/admin/103.jpg"/>
+						<img alt="" width="50" height="50" src="/shop2/${goods.goodspicture}"/>
 				</td>
 			</tr>
 			<tr height="20px">

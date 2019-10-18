@@ -15,6 +15,8 @@ public interface AdminService {
 	
 	public int deleteGoods(int goodsid);
 	
+	public Goods goodsDetail(int goodsid);
+	
 	public Goods productDetails(int goodsid);
 	
 	public int updateGoods(Goods goods);

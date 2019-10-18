@@ -21,6 +21,8 @@ public interface AdminMapper {
 	
 	public int updateGoods(Goods goods);
 	
+	public Goods goodsDetail(int goodsid);
+	
 	public List<Goods> selectType();
 	
 	public Goods existType(String typename);

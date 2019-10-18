@@ -64,7 +64,10 @@
         select goodsid,goodsname,goodsoriginal,goodscurrent,goodspicture 
         from t_goods where goodstype=#{typeid}
     </select>
-
+    <select id="searchGoods" parameterType="String" resultType="Goods">
+        select goodsid,goodsname,goodsoriginal,goodscurrent,goodspicture 
+        from t_goods where goodsname like concat('%',#{goodsname},'%')
+    </select>
     <select id="goodsDetail" parameterType="int" resultType="Goods">
     	select * from t_goods a,t_goodstype b where a.goodstype=b.typeid and a.goodsid=#{goodsid}
     </select>

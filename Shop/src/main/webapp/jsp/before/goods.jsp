@@ -22,9 +22,9 @@
 <body>
 	<iframe src="<%=basePath %>jsp/before/head.jsp" width="100%"> </iframe>
 	<%-- <iframe src="<%=basePath %>jsp/before/head.jsp" name="main" width="100%"></iframe> --%>
-	<div class="blank"></div>
+ 	<div class="blank"></div>
 	<div class="block clearfix">
-		<div class="AreaL">
+		<%--<div class="AreaL">
 			<!--销售排行-->
 			<div class="box">
 				<div class="box_2">
@@ -58,7 +58,7 @@
 					</div>
 					<!--公告栏 end-->
 				</div>
-			</div>
+			</div> --%>
 			<div class="AreaR">
 				<!--最新商品列表-->
 				<div class="blank5"></div>
@@ -76,7 +76,7 @@
 											<input type="text" value="${k=k+1}" style="display:none"/>
 											<p class="pic">
 												<a href="<%=basePath %>user/goodsDetail?goodsid=${newgoods.goodsid}">
-												<img src="<%=basePath %>images/before/10${k}.jpg" /></a>
+												<img src="/shop2/${newgoods.goodspicture}" /></a>
 											</p>
 											<p class="wz">
 												<strong><a href="<%=basePath %>jsp/before/goodsDetail.jsp">${newgoods.goodsname}</a></strong>
@@ -93,6 +93,5 @@
 				<!--最新商品列表end-->
 			</div>
 		</div>
-	</div>
 </body>
 </html>

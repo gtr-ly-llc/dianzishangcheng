@@ -36,7 +36,7 @@
 							<input type="text" value="${i=i+1}" style="display:none"/>
 							<img class="iteration" src="<%=basePath %>images/before/top_${i}.gif" />
 							<a href="<%=basePath %>user/goodsDetail?goodsid=${sales.goodsid}"> 
-								<img class="samllimg" alt="" src="<%=basePath %>images/before/10${i%9}.jpg" /></a></li>
+								<img class="samllimg" alt="" src="/shop2/${sales.goodspicture}"/></a></li>
 							<li class="iteration1">
 							<a href="<%=basePath %>jsp/before/goodsDetail.jsp">${sales.goodsname}</a><br />
 							原价：<font class="f1">${sales.goodsoriginal}</font><br />

@@ -11,9 +11,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>addGoods.jsp</title>
 <link href="<%=basePath %>css/admin/common.css" type="text/css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+// 检测表单元素
+function check(){
+	var th = document.form;
+	if(th.goodsname.value == ""){
+		alert("请填写商品名称");
+		return false;
+	}
+	if(th.goodsoriginal.value == ""){
+		alert("请输入商品价格");
+		return false;
+	}
+	if(th.goodscurrent.value == ""){
+		alert("请输入商品折扣价");
+		return false;
+	}
+	if(th.goodsstock.value == ""){
+		alert("请输库存数量");
+		return false;
+	}
+	if(th.image.value == ""){
+		alert("请上传商品图片");
+		return false;
+	}
+	
+	//$("#goodName").val(goodName);
+	return true;
+}
+</script>
 </head>    
 <body>
-	<form action="<%=basePath %>admin/addGoods" method="post">
+	<form name="form" action="<%=basePath %>admin/addGoods" method="post" enctype="multipart/form-data" onsubmit="return check();">
 	<table border=1 style="border-collapse: collapse">
 		<caption>
 			<font size=4 face=华文新魏>添加商品</font>
@@ -25,7 +55,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>原价<font color="red">*</font></td>
+			<td>原价</td>
 			<td>
 				<input type="text" name="goodsoriginal"/>
 			</td>
@@ -45,7 +75,7 @@
 		<tr>
 			<td>图片</td>
 			<td>
-				<input type="file" name="goodspicture"/>
+				<input type="file" name="image" id="image"accept="image/*"/>
 			</td>
 		</tr>
 		<tr>
@@ -55,8 +85,6 @@
 					<c:forEach items="${typeList}" var="type">
 						<option value="${type.typeid}">${type.typename}</option>
 					</c:forEach>
-					<option value="1">家电</option>
-					<option value="2">水果</option>
 				</select>
 			</td>
 		</tr>

@@ -89,7 +89,10 @@ public class UserServiceImpl implements UserService{
 	public List<Goods> showGoodsList(int typeid){
 		return userMapper.showGoodsList(typeid);
 	}
-	
+	@Override
+	public List<Goods> searchGoods(String username){
+		return userMapper.searchGoods(username);
+	}
     @Override
     public Goods goodsDetail(int goodsid) {
     	return userMapper.goodsDetail(goodsid);

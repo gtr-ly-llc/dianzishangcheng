@@ -42,7 +42,7 @@ body {
 	height: 25px;
 	width: 800px;
 	font-size: 14px;
-	background-image: url(images/admin/bb.jpg);
+	background-image: url(../images/admin/bb.jpg);
 }
 #navigator ul {
 	list-style-type: none;
@@ -140,7 +140,7 @@ body {
 		
 	</div>
 	<div id="content">
-		<iframe src="<%=basePath %>jsp/admin/selectGoods.jsp"  name="center" frameborder="0"></iframe>
+		<iframe src=""  name="center" frameborder="0"></iframe>
 	</div>
 	<div id="footer">Copyright ©清华大学出版社</div>
 </body>

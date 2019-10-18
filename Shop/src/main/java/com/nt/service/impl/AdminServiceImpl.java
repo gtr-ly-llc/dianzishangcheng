@@ -83,6 +83,10 @@ public class AdminServiceImpl implements AdminService{
     	return adminMapper.updateGoods(goods);
     }
     @Override
+    public Goods goodsDetail(int goodsid) {
+    	return adminMapper.goodsDetail(goodsid);
+    }
+    @Override
     public List<Goods> selectType(){
     	List<Goods> typeList=adminMapper.selectType();
     	return typeList;

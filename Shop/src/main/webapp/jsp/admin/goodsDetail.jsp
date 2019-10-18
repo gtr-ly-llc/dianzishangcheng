@@ -18,37 +18,37 @@
 		<tr>
 			<td>名称</td>
 			<td>
-				苹果1号
+				${gooddate.goodsname}
 			</td>
 		</tr>
 		<tr>
 			<td>原价</td>
 			<td>
-				10
+				${gooddate.goodsoriginal}
 			</td>
 		</tr>
 		<tr>
 			<td>折扣价</td>
 			<td>
-				8
+				${gooddate.goodscurrent}
 			</td>
 		</tr>
 		<tr>
 			<td>库存</td>
 			<td>
-				500
+				${gooddate.goodsstock}
 			</td>
 		</tr>
 		<tr>
 			<td>图片</td>
 			<td>
-				<img alt="" width="250" height="250" src="<%=basePath %>images/admin/103.jpg"/>
+				<img alt="" width="250" height="250" src="/shop2/${gooddate.goodspicture}"/>
 			</td>
 		</tr>
 		<tr>
 			<td>类型</td>
 			<td>
-				水果
+				${gooddate.typename}
 			</td>
 		</tr>
 	</table>

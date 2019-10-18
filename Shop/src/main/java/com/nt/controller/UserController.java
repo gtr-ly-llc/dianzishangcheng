@@ -171,6 +171,18 @@ public class UserController {
 		return mav;
 	}
 	
+	@RequestMapping("searchGoods")
+    public ModelAndView searchGoods(String username){
+		System.out.println(username);
+		List<Goods> goodsList=userService.searchGoods(username);
+        ModelAndView mav = new ModelAndView("before/searchResult");
+        for(Goods g : goodsList) {
+        	System.out.println(g.getGoodsname());
+        }
+        mav.addObject("goodsList",goodsList);
+		return mav;
+    }
+	
 	@RequestMapping("showGoodsList")
     public ModelAndView showGoodsList(Integer typeid){
 		List<Goods> goodsList=userService.showGoodsList(typeid);
@@ -188,6 +200,8 @@ public class UserController {
         mav.addObject("goods",goods);
 		return mav;
     }
+	
+	
 	
 	@RequestMapping("addToCart")
     public ModelAndView addToCart(ShopCart addshopcart,Integer goodsid){

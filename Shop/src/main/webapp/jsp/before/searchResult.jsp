@@ -4,6 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,7 +15,7 @@
 <link href="<%=basePath %>css/before/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
- <iframe src="head.jsp" width="100%"> </iframe>
+ <iframe src="<%=basePath %>jsp/before/head.jsp" width="100%"> </iframe>
 	<div class="blank"></div>
 	<div class="block clearfix">
 		<div class="location ared">当前位置： <a href="index.jsp">首页</a> > 搜索结果</div>
@@ -34,66 +35,21 @@
 						<td colspan="5" height="15px"
 							style="border: 0 none; background: #FFF"></td>
 					</tr>
-						<tr>
-							<td bgcolor="#ffffff" align="center">1</td>
-							<td bgcolor="#ffffff" align="center">水果1</td>
+						<c:forEach items="${goodsList}" var="goods">
+							<tr>
+							<td bgcolor="#ffffff" align="center">${i=i+1}</td>
+							<td bgcolor="#ffffff" align="center">${goods.goodsname}</td>
 							<td align="center" bgcolor="#ffffff" height="60px"><img
 								style="width: 50px; height: 50px;"
-								src="<%=basePath %>images/before/103.jpg" border="0" title="水果1" />
+								src="/shop2/${goods.goodspicture}" border="0" title="水果1" />
 							</td>
-							<td align="center" bgcolor="#ffffff">10</td>
+							<td align="center" bgcolor="#ffffff">${goods.goodscurrent}</td>
 							<td align="center" bgcolor="#ffffff"><a
 								style="text-decoration: none;" class="f6"
-								href="goodsDetail.jsp">去看看</a></td>
-						</tr>
-						<tr>
-							<td bgcolor="#ffffff" align="center">1</td>
-							<td bgcolor="#ffffff" align="center">水果1</td>
-							<td align="center" bgcolor="#ffffff" height="60px"><img
-								style="width: 50px; height: 50px;"
-								src="<%=basePath %>images/before/103.jpg" border="0" title="水果1" />
+								href="<%=basePath %>user/goodsDetail?goodsid=${goods.goodsid}">去看看</a>
 							</td>
-							<td align="center" bgcolor="#ffffff">10</td>
-							<td align="center" bgcolor="#ffffff"><a
-								style="text-decoration: none;" class="f6"
-								href="goodsDetail.jsp">去看看</a></td>
 						</tr>
-						<tr>
-							<td bgcolor="#ffffff" align="center">1</td>
-							<td bgcolor="#ffffff" align="center">水果1</td>
-							<td align="center" bgcolor="#ffffff" height="60px"><img
-								style="width: 50px; height: 50px;"
-								src="<%=basePath %>images/before/103.jpg" border="0" title="水果1" />
-							</td>
-							<td align="center" bgcolor="#ffffff">10</td>
-							<td align="center" bgcolor="#ffffff"><a
-								style="text-decoration: none;" class="f6"
-								href="goodsDetail.jsp">去看看</a></td>
-						</tr>
-						<tr>
-							<td bgcolor="#ffffff" align="center">1</td>
-							<td bgcolor="#ffffff" align="center">水果1</td>
-							<td align="center" bgcolor="#ffffff" height="60px"><img
-								style="width: 50px; height: 50px;"
-								src="<%=basePath %>images/before/103.jpg" border="0" title="水果1" />
-							</td>
-							<td align="center" bgcolor="#ffffff">10</td>
-							<td align="center" bgcolor="#ffffff"><a
-								style="text-decoration: none;" class="f6"
-								href="goodsDetail.jsp">去看看</a></td>
-						</tr>
-						<tr>
-							<td bgcolor="#ffffff" align="center">1</td>
-							<td bgcolor="#ffffff" align="center">水果1</td>
-							<td align="center" bgcolor="#ffffff" height="60px"><img
-								style="width: 50px; height: 50px;"
-								src="<%=basePath %>images/before/103.jpg" border="0" title="水果1" />
-							</td>
-							<td align="center" bgcolor="#ffffff">10</td>
-							<td align="center" bgcolor="#ffffff"><a
-								style="text-decoration: none;" class="f6"
-								href="goodsDetail.jsp">去看看</a></td>
-						</tr>
+						</c:forEach>
 				</table>
 			</div>
 		</div>

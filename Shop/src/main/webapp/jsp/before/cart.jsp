@@ -124,7 +124,7 @@ window.onload = function() {
 							<input type="checkbox" name="shopcartid" id="shopcartid" value="${cart.shopcartid}" checked>
 							<a href="goodsDetail.jsp"> <img
 									style="width: 100px; height: 100px;"
-									src="<%=basePath %>images/before/103.jpg" border="0"
+									src="/shop2/${cart.goods.goodspicture}" border="0"
 									title="水果2" />
 							</a>
 							<input type="text" style="display:none" value="${money=money+cart.buynumber*cart.goods.goodscurrent}"/>

@@ -33,7 +33,7 @@
     <insert id="addGoods" parameterType="Goods">
     	insert t_goods set 
     	<if test="goodsid != 0"> goodsid=#{goodsid},</if>
-    	goodsname=#{goodsname},goodsoriginal=#{goodsoriginal},goodscurrent=#{goodscurrent},goodsstock=#{goodsstock},goodspicture="000",goodstype=#{typeid}
+    	goodsname=#{goodsname},goodsoriginal=#{goodsoriginal},goodscurrent=#{goodscurrent},goodsstock=#{goodsstock},goodspicture=#{goodspicture},goodstype=#{typeid}
     </insert>
     <delete id="deleteGoods" parameterType="int">
     	delete from t_goods where goodsid=#{goodsid}
@@ -42,8 +42,13 @@
         select * from t_goods a,t_goodstype b where goodsid=#{goodsid} and a.goodstype=b.typeid
     </select>
     <update id="updateGoods" parameterType="Goods">
-    	update t_goods set goodsname=#{goodsname},goodsoriginal=#{goodsoriginal},goodscurrent=#{goodscurrent},goodsstock=#{goodsstock},goodspicture="000",goodstype=#{typeid} where goodsid=#{goodsid}
+    	update t_goods set goodsname=#{goodsname},goodsoriginal=#{goodsoriginal},goodscurrent=#{goodscurrent},goodsstock=#{goodsstock},goodstype=#{typeid}
+    	<if test="goodspicture != null">,goodspicture=#{goodspicture}</if>
+    	where goodsid=#{goodsid}
     </update>
+    <select id="goodsDetail" parameterType="int" resultType="Goods">
+        select * from t_goods a,t_goodstype b where a.goodstype=b.typeid and a.goodsid=#{goodsid}
+    </select>
     <select id="selectType" resultType="Goods">
         select * from t_goodstype
     </select>
@@ -56,10 +61,6 @@
     <delete id="deleteType" parameterType="Goods">
     	delete from t_goodstype where typeid=#{typeid}
     </delete>
-
-    
-    
-
 
     <select id="goOrderManager" resultMap="OrderMap">
     	select useremail,orderid,ordermoney,orderstatus,ordertime

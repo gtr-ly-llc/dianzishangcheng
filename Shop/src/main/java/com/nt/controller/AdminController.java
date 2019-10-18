@@ -13,6 +13,8 @@ import com.nt.pojo.Notice;
 import com.nt.pojo.Goods;
 import com.nt.pojo.Order;
 import com.nt.service.AdminService;
+import com.nt.pojo.UploadedImageFile;
+import com.nt.util.UploadFile;
 @Controller
 @RequestMapping("admin")
 public class AdminController {
@@ -135,9 +137,16 @@ public class AdminController {
      * @return
      */
     @RequestMapping("addGoods")
-    public ModelAndView addGoods(Goods goods,HttpServletRequest request){
+    public ModelAndView addGoods(Goods goods,UploadedImageFile file){
+    	ModelAndView mav = new ModelAndView();
+    	String newFileName = UploadFile.uploadFile(file); // 上传图片，获取图片的新名称
+		if(newFileName.isEmpty()) { // 图片写入磁盘失败
+			mav.setViewName("redirect:jumpAddGood");
+			mav.addObject("mess", "图片上传失败，请重试");
+			return mav;
+		}
+		goods.setGoodspicture(newFileName);
 		int ok=adminService.addGoods(goods);
-        ModelAndView mav = new ModelAndView();
         mav=goAddGoods();
         if(ok==1) {
         	mav.addObject("msg","添加商品成功！");
@@ -178,10 +187,19 @@ public class AdminController {
 		return mav;
     }
     @RequestMapping("updateGoods")
-    public ModelAndView updateGoods(Goods goods,HttpServletRequest request){
+    public ModelAndView updateGoods(Goods goods,UploadedImageFile file){
+    	ModelAndView mav = new ModelAndView();
+    	if(!file.getImage().isEmpty()) {
+    		String newFileName = UploadFile.uploadFile(file); // 上传图片，获取图片的新名称
+    		if(newFileName.isEmpty()) { // 图片写入磁盘失败
+    			mav.setViewName("redirect:jumpAddGood");
+    			mav.addObject("mess", "图片上传失败，请重试");
+    			return mav;
+    		}
+    		goods.setGoodspicture(newFileName);
+    	}
 		int ok=adminService.updateGoods(goods);
 		Goods goodsnew=adminService.productDetails(goods.getGoodsid());
-        ModelAndView mav = new ModelAndView();
         mav=selectType("select");
         mav.setViewName("admin/updateAgoods");
     	mav.addObject("goods",goodsnew);
@@ -190,6 +208,15 @@ public class AdminController {
 		}else {
 			mav.addObject("msg","商品不存在！");
 		}
+		return mav;
+    }
+    
+    @RequestMapping("goodsDetail")
+    public ModelAndView goodsDetail(Integer goodsid){
+		Goods gooddate=adminService.goodsDetail(goodsid);
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("admin/goodsDetail");
+        mav.addObject("gooddate",gooddate);
 		return mav;
     }
     /**
